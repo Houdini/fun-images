@@ -7,10 +7,13 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 p "Start generating super admins"
-unless User.find :first, :conditions => {:email => 'dmitrii.golub@gmail.com'}
-  admin = User.create :email => 'dmitrii.golub@gmail.com', :password => '123456', :password_confirmation => '123456'
-  admin.role = 0
-  admin.save
+admins = %w(dmitrii.golub@gmail.com palam4ik@gmail.com)
+admins.each do |email|
+  unless User.find :first, :conditions => {:email => email}
+    admin = User.create :email => email, :password => '123456', :password_confirmation => '123456'
+    admin.role = 0
+    admin.save
 
-  p "S-admin: #{admin.email} generated"
+    p "S-admin: #{admin.email} generated"
+  end
 end
