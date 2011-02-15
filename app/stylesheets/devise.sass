@@ -1,0 +1,20 @@
+@import "compass/utilities/lists/horizontal-list"
+@import "blueprint"
+@import "blueprint/typography"
+@import "blueprint/form"
+@import "fancy-buttons"
+
++blueprint-form-layout
+*
+  border-width: 1px !important
+input, input:focus
+  border: 1px solid #666 !important
+  box-sizing: border-box
+.content
+  width: 600px
+  margin: 0px auto
+  fieldset
+    button, input[type=submit]
+      @include fancy-button-colors(#124c89, adjust-hue(#124c89, -120), darken(adjust-hue(#124c89, -120), 6))
+  ul
+    +horizontal-list

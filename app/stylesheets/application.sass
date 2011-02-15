@@ -1,0 +1,47 @@
+@import "compass/reset"
+@import "compass/css3/border-radius"
+@import "compass/utilities/lists/horizontal-list"
+@import "compass/utilities/links/link-colors"
+@import "compass/utilities/links/link-colors"
+@import "compass/utilities/general/min"
+@import "blueprint"
+@import "blueprint/typography"
+
+@import "partials/default"
+
+#header
+  width: 100%
+  height: 15px
+  background-color: $blueprint-background-color
+  border-bottom: 1px solid black
+  margin-bottom: $default-margin*1.5
+
+
+#last_images
+  margin-left: $default-margin !important
+  margin-bottom: $default-margin*1.5 !important
+  +horizontal-list
+  li
+    margin-right: $default-margin
+    .image-container
+      height: 65px
+    .date
+      padding-top: 4px
+      color: $quiet-color
+      font-size: 12px
+  li.active
+    .date
+      color: $loud-color
+
+.content
+  margin-left: $default-margin
+  margin-right: $default-margin
+  +border-radius
+  +min-height(650px)
+  border: 1px solid $feedback-border-color
+  #main_image
+    position: absolute
+    width: 540px
+
+  #comments
+    margin-left: 550px

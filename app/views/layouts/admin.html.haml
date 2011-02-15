@@ -1,0 +1,16 @@
+!!!Strict
+%html
+  %head
+    = stylesheet_link_tag 'compiled/admin.css', :media => 'screen, projection'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+  %body
+    #header
+      = current_user.email
+    
+    = yield
+  - if Rails.env == :production
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'application.min'
+  - else
+    = javascript_include_tag 'jquery', 'rails', 'application'

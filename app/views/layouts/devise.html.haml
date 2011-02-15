@@ -1,0 +1,15 @@
+!!!Strict
+%html
+  %head
+    = stylesheet_link_tag 'compiled/devise.css', :media => 'screen, projection'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+  %body
+    .notice
+      = flash[:notice]
+    .error
+      = flash[:error]
+    %h1
+      = link_to 'На главную', root_path
+    .content
+      = yield

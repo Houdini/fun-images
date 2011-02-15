@@ -1,0 +1,22 @@
+!!!Strict
+%html
+  %head
+    -#= stylesheet_link_tag :all
+    = stylesheet_link_tag 'compiled/application.css', :media => 'screen, projection'
+    = javascript_include_tag 'application'
+    = csrf_meta_tag
+  %body
+    #header
+      - if signed_in? :user
+        = current_user.email
+      - else
+        = link_to t(:register), new_user_registration_path
+        = link_to t(:new_user_session), new_user_session_path
+      = flash[:notice]
+      = flash[:error]
+    = yield
+  - if Rails.env == :production
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'application.min'
+  - else
+    = javascript_include_tag 'jquery', 'rails', 'application'

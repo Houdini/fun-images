@@ -1,0 +1,18 @@
+%p#notice
+  = notice
+
+%p
+  %b
+    Title:
+  = @image.title
+
+%p
+  %b
+    Desctiption:
+  = @image.title
+
+= image_tag @image.image.url
+
+-#= link_to 'Edit', edit_time_path(@image)
+|
+= link_to 'Back', images_path

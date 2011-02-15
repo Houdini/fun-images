@@ -1,0 +1,27 @@
+%ul#last_images
+  - index_to_show = -1
+  - @images.each_with_index do |image, index|
+    - index_to_show = index if image.shown_date == @date_to_show
+    %li{:class => index == index_to_show ? 'active' : ''}
+      .image-container
+        %a{:href => "/#{image.shown_date.to_s}"}
+          = image_tag image.image.thumb.url
+      %center
+        .date
+          = l image.shown_date, :format => :date_month
+.content
+  #main_image
+    %h1
+      = @images[index_to_show].title
+    = image_tag @images[index_to_show].image.url, :width => 540
+  #comments
+
+    - if signed_in? :user
+      = form_for [@images[index_to_show], Comment.new], :remote => true do |f|
+        = f.hidden_field :author, :value => current_user.id
+        = f.text_area :body
+        = f.submit
+
+    .comments
+      - @images[index_to_show].comments.each do |comment|
+        .comment
