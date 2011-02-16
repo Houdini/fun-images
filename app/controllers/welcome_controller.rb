@@ -26,6 +26,13 @@ class WelcomeController < ApplicationController
     else
       # future
     end
+
+    #
+    if @images.size == 0
+      render 'no_images'
+    else
+      @date_to_show = @images.last.shown_date if @images.size > 0
+    end
   end
 
 end

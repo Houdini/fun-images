@@ -1057,7 +1057,7 @@ body a:active {
   color: #cc0099;
 }
 
-/* line 12, ../../../app/stylesheets/application.sass */
+/* line 14, ../../../app/stylesheets/application.sass */
 #header {
   width: 100%;
   height: 15px;
@@ -1066,7 +1066,7 @@ body a:active {
   margin-bottom: 15px;
 }
 
-/* line 20, ../../../app/stylesheets/application.sass */
+/* line 22, ../../../app/stylesheets/application.sass */
 #last_images {
   margin-left: 10px !important;
   margin-bottom: 15px !important;
@@ -1096,26 +1096,26 @@ body a:active {
 #last_images li:last-child, #last_images li.last {
   padding-right: 0;
 }
-/* line 24, ../../../app/stylesheets/application.sass */
+/* line 26, ../../../app/stylesheets/application.sass */
 #last_images li {
   margin-right: 10px;
 }
-/* line 26, ../../../app/stylesheets/application.sass */
+/* line 28, ../../../app/stylesheets/application.sass */
 #last_images li .image-container {
   height: 65px;
 }
-/* line 28, ../../../app/stylesheets/application.sass */
+/* line 30, ../../../app/stylesheets/application.sass */
 #last_images li .date {
   padding-top: 4px;
   color: #666666;
   font-size: 12px;
 }
-/* line 33, ../../../app/stylesheets/application.sass */
+/* line 35, ../../../app/stylesheets/application.sass */
 #last_images li.active .date {
   color: #111111;
 }
 
-/* line 36, ../../../app/stylesheets/application.sass */
+/* line 38, ../../../app/stylesheets/application.sass */
 .content {
   margin-left: 10px;
   margin-right: 10px;
@@ -1130,12 +1130,40 @@ body a:active {
   height: 650px;
   border: 1px solid #dddddd;
 }
-/* line 42, ../../../app/stylesheets/application.sass */
+/* line 44, ../../../app/stylesheets/application.sass */
 .content #main_image {
   position: absolute;
   width: 540px;
 }
-/* line 46, ../../../app/stylesheets/application.sass */
+/* line 48, ../../../app/stylesheets/application.sass */
 .content #comments {
   margin-left: 550px;
+}
+/* line 51, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment {
+  padding: 10px;
+}
+/* line 53, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment .author {
+  margin-right: 10px;
+  float: left;
+  width: 200px;
+}
+/* line 57, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment .menu {
+  clear: both;
+  margin-top: 10px;
+  display: inline;
+}
+/* line 61, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment .menu a {
+  padding-right: 10px;
+}
+/* line 63, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment:hover {
+  background-color: #e7e7e7;
+}
+/* line 65, ../../../app/stylesheets/application.sass */
+.content #comments .comments .comment:hover .menu {
+  display: inline;
 }

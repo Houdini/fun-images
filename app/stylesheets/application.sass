@@ -9,6 +9,8 @@
 
 @import "partials/default"
 
+$light-gray: #e7e7e7
+
 #header
   width: 100%
   height: 15px
@@ -45,3 +47,20 @@
 
   #comments
     margin-left: 550px
+    .comments
+      .comment
+        padding: 10px
+        .author
+          margin-right: 10px
+          float: left
+          width: 200px
+        .menu
+          clear: both
+          margin-top: 10px
+          display: inline // possible change to none in production
+          a
+            padding-right: 10px
+      .comment:hover
+        background-color: $light-gray
+        .menu
+          display: inline

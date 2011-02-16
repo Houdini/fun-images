@@ -25,3 +25,18 @@
     .comments
       - @images[index_to_show].comments.each do |comment|
         .comment
+          = debug comment
+          .stat
+            - if comment.created_at
+              = comment.created_at
+          .author
+            %a(href="#")
+              = comment.user_author.email
+          .body
+            = comment.body
+          .menu
+            .i_like
+              = link_to t(:i_like), comment_i_like_path(@date_to_show.to_s, comment.id), :remote => true
+              - if comment.rating > 0
+                = comment.rating
+            = link_to t(:spam), comment_report_spam_path(@date_to_show.to_s, comment.id), :remote => true

@@ -16,6 +16,11 @@ gem 'compass-colors', :require => false
 gem 'fancy-buttons', :require => false
 
 gem 'jquery-rails', '>= 0.2.7'
+
+gem 'cucumber-rails'
+gem 'capybara'
+gem 'database_cleaner'
+gem 'launchy'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

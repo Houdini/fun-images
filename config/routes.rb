@@ -2,7 +2,10 @@ FunImages::Application.routes.draw do
   match '/i/uploads/*path' => "gridfs_controller#serve"
 
   resources :images do
-    resources :comments
+    resources :comments do
+      get 'report_spam'
+      get 'i_like'
+    end
   end
 
   root :to => "welcome#index"
