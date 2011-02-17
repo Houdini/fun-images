@@ -1,13 +1,19 @@
-Feature: Manage i_likes
+Feature: Manage comments
   In order to [goal]
   [stakeholder]
   wants [behaviour]
   
-  Scenario: Register new i_like
+  Scenario: User create new comment, and he can not vote or spam it
     Given I am logged in
     Given an image
-    Then show me the page
     Then go to the home page
+    When I fill in the following:
+      | comment_body | Comment body |
+    And I press "comment_submit"
+    Then go to the home page
+    And I should see "Comment body"
+    And show me the page
+    
 #    Given I am on the new i_like page
 #    And I press "Create"
 

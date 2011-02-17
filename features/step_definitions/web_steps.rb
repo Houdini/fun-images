@@ -231,6 +231,7 @@ Given /^I am logged in$/ do
 end
 
 Given /^an image$/ do
-  image = Image.new :title => 'Image title', :image => File.open("#{Rails.root.to_s}/public/images/rails.png")
+  image = Image.new :title => 'Image title', :image => File.open("#{Rails.root.to_s}/public/images/rails.png"), :shown_date => Date.today
   image.save
+  p "Image.count = #{Image.count}"
 end

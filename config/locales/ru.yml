@@ -26,6 +26,12 @@ ru:
   sign_in: Войти
   forgot_your_password: Забыли пароль?
   remember_me: Запомнить меня
+  submit_comment: Отправить
+  log_out: Выйти
+
+  just_now: Только что
+  minutes_ago: Несколько минут назад
+  less_then_hour: Меньше часа назад
   date:
     formats:
       default: "%d.%m.%Y"
