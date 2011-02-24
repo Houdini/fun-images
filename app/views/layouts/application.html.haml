@@ -9,12 +9,13 @@
       - if signed_in? :user
         .user_menu
           = current_user.nick
-          = link_to t(:log_out), destroy_user_session_path, :class => :log_out
+          = link_to t(:log_out), destroy_user_session_path, :class => :log_out, :id => :log_out
       - else
         = link_to t(:register), new_user_registration_path
         = link_to t(:new_user_session), new_user_session_path
       = flash[:notice]
       = flash[:error]
+      = flash[:alert]
     = yield
   - if Rails.env == :production
     = javascript_include_tag 'jquery.min'

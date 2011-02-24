@@ -56,16 +56,27 @@ $light-gray: #e7e7e7
     .comments
       .comment
         padding: 10px
-        .author
-          margin-right: 10px
-          float: left
-          width: 200px
-        .menu
-          clear: both
-          margin-top: 10px
-          display: inline // possible change to none in production
-          a
-            padding-right: 10px
+        .info
+          padding-bottom: 5px
+          span.date
+            color: gray
+            font-size: 90%
+        .body
+          .menu
+            float: left
+            width: 50px
+            .i_like
+              color: gray
+              a
+                color: gray
+                text-decoration: none
+            .i_like:hover
+              a
+                color: #e87979
+            .like
+              a
+                color: red
+
       .comment:hover
         background-color: $light-gray
         .menu

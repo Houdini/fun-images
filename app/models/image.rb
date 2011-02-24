@@ -15,4 +15,17 @@ class Image
   validates_presence_of :image
 
   referenced_in :user
+
+  class << self
+    def find_closest_images image
+      return [] unless image
+      days_limit = 5
+      if image.shown_date < Date.today
+
+      else
+        Image.desc(:shown_date).limit days_limit
+      end
+    end
+  end
+
 end

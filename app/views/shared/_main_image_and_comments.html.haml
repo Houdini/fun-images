@@ -1,0 +1,37 @@
+#main_image
+  %h1
+    = @primary_image.title
+  = image_tag @primary_image.image.url, :width => 540
+#comments
+
+  - if signed_in? :user
+    = form_for [@primary_image, @comment], :remote => true do |f|
+      - if @comment.errors.any?
+        #error_explanation
+          %h2
+            = pluralize @comment.errors.count, "error"
+            prohibited this image from being saved:
+          %ul
+            - @comment.errors.full_messages.each do |message|
+              %li
+                = message
+      = f.hidden_field :author, :value => current_user.id
+      = f.text_area :body
+      = f.submit t(:submit_comment), :name => nil
+
+  .comments
+    - @primary_image.comments.each do |comment|
+      .comment
+        .info
+          - if comment.created_at
+            %span.date
+              = time_ago_from comment.created_at
+          %a(href="#")= comment.user_author.nick if comment.author
+        .body
+          .menu
+            .i_like
+              - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.author) or !(signed_in? :user and current_user.find_in_like_comments comment.id,  @primary_image.id)
+                = link_to t(:i_like), comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
+              - if comment.rating > 0
+                = comment.rating
+          = comment.body

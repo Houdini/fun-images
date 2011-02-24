@@ -55,7 +55,7 @@
 		}
 
 		$.ajax({
-			url: url, type: method || 'GET', data: data, dataType: dataType,
+			url: url + '.json', type: method || 'GET', data: data, dataType: dataType,
 			// stopping the "ajax:beforeSend" event will cancel the ajax request
 			beforeSend: function(xhr, settings) {
 				if (settings.dataType === undefined) {

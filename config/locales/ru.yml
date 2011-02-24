@@ -14,7 +14,7 @@ ru:
   register: Зарегистрироваться
   new_user_session: Залогиниться
 
-  i_like: Мне нравится
+  i_like: ❤
   spam: Это спам
 
 
@@ -32,6 +32,11 @@ ru:
   just_now: Только что
   minutes_ago: Несколько минут назад
   less_then_hour: Меньше часа назад
+
+
+
+  save_comment_successfuly: Комментарий успешно сохранен
+  fix_errors: Пожалуйста, исправьте ошибки
   date:
     formats:
       default: "%d.%m.%Y"
@@ -230,3 +235,87 @@ ru:
       words_connector: ", "
       two_words_connector: " и "
       last_word_connector: " и "
+
+  mongoid:
+    errors:
+      models:
+        comment:
+          attributes:
+            body:
+              too_short: Мало букав, пиши исчо
+      messages:
+        taken:
+          уже занят
+        document_not_found:
+          Документ класса %{klass} с id %{identifiers} не найден.
+        invalid_database:
+          База данных должная быть Mongo::DB, а не %{name}.
+        invalid_type:
+          Поле уже было определено в классе %{klass}, но получено как %{other}
+          со значением %{value}.
+        unsupported_version:
+          Версия MongoDB %{version} не поддерживается. Пожалуйста, обновитесь до
+          версии %{mongo_version}.
+        validations:
+          Документ не прошёл валидацию - %{errors}.
+        invalid_collection:
+          Доступ к коллекции для класса %{klass} запрещён, так как это вложенный
+          документ. Пожалуйста, обратитесь к коллекции через родительский документ.
+        invalid_field:
+          Определение поля с именем %{name} запрещено. Не определяйте поля
+          с именами совпадающими с внутренними атрибутами или методами Mongoid.
+          Используйте Document#instance_methods для просмотра запрещённых имён.
+        too_many_nested_attribute_records:
+          Accepting nested attributes для %{association} ограничено
+          %{limit} записями.
+        embedded_in_must_have_inverse_of:
+          Указание опции inverse_of для embedded_in ассоциации обязательно.
+        dependent_only_references_one_or_many:
+          Опция dependent => destroy|delete доступная только для
+          references_one или references_many ассоциаций.
+        association_cant_have_inverse_of:
+          Опция inverse_of не может использоваться с этой ассоциацией.
+          Используйте её с embedded_in или references_many ассоциациями.
+        calling_document_find_with_nil_is_invalid:
+          Вызов Document#find с nil запрещён
+        unsaved_document:
+          Вызов методов create или create! запрещён у реляционной ассоциации
+          (%{document}), у которой родитель (%{base}) не сохранён.
+  errors:
+    messages:
+      not_found: "not found"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
+
+  devise:
+    failure:
+      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Your account is locked.'
+      invalid: 'Invalid email or password.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Your session expired, please sign in again to continue.'
+      inactive: 'Your account was not activated yet.'
+    sessions:
+      signed_in: 'Signed in successfully.'
+      signed_out: 'Signed out successfully.'
+    passwords:
+      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      updated: 'Your password was changed successfully. You are now signed in.'
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
+      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent to your e-mail.'
+      updated: 'You updated your account successfully.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Confirmation instructions'
+      reset_password_instructions:
+        subject: 'Reset password instructions'
+      unlock_instructions:
+        subject: 'Unlock Instructions'

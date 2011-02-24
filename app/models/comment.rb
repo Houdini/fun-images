@@ -6,6 +6,9 @@ class Comment
   field :body
   field :author
   field :rating, :type => Integer, :default => 0
+  field :like_users, :type => Array, :default => []
+
+  validates_length_of :body, :minimum => 3, :maximum => 250
 
   def user_author
     User.find author

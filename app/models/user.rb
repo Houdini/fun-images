@@ -11,6 +11,7 @@ class User
   field :nick
 
   references_many :images
+  embeds_many :user_like_comments
 
   def before_save
     unless nick
@@ -24,5 +25,9 @@ class User
     else
       email.split('@').first
     end
+  end
+
+  def find_in_like_comments comment_id, image_id
+    user_like_comments.select {|like_comment| like_comment.comment_id == comment_id.to_s and like_comment.image_id == image_id.to_s}
   end
 end

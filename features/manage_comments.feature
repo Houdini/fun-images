@@ -11,9 +11,34 @@ Feature: Manage comments
       | comment_body | Comment body |
     And I press "comment_submit"
     Then go to the home page
-    And I should see "Comment body"
-    And show me the page
-    
+    Then I should see "Comment body"
+
+  Scenario: Prevent save empty new comment
+    Given I am logged in
+    Given an image
+    Then go to the home page
+    And I press "comment_submit"
+    Then I should see i18n "mongoid.errors.models.comment.attributes.body.too_short"
+  
+  Scenario: Prevent double vote
+    Given I am logged in
+    Given an image
+    And go to the home page
+    And I fill in the following:
+      | comment_body | Comment body |
+    And I press "comment_submit"
+    And go to the home page
+    And I follow i18n "log_out"
+    And go to the home page
+    And I am logged in "user2"
+    And I follow i18n "i_like"
+    Then what
+
+
+
+
+
+
 #    Given I am on the new i_like page
 #    And I press "Create"
 

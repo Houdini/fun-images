@@ -3,14 +3,14 @@ FunImages::Application.routes.draw do
 
   resources :images do
     resources :comments do
-      get 'report_spam'
+#      get 'report_spam' #TODO complete when it's need
       get 'i_like'
     end
   end
 
   root :to => "welcome#index"
 
-  match '/:shown_date' => 'welcome#index', :constraints => {:shown_date => /\d{4}-\d{2}-\d{2}/}
+  match '/:shown_date' => 'welcome#index_with_date', :constraints => {:shown_date => /\d{4}-\d{2}-\d{2}/}
 
   devise_for :users do
     root :to => 'welcome#index'
