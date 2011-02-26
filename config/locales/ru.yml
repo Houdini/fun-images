@@ -37,6 +37,35 @@ ru:
 
   save_comment_successfuly: Комментарий успешно сохранен
   fix_errors: Пожалуйста, исправьте ошибки
+
+  thanks_for_comment: +1 к комментарию автора %{nick}
+  you_have_already_voted: Вы уже голосовали
+  same_comment_again: Вы уже опубликовали этот комментарий на этой странице
+
+  max_characters: Надо уложиться в %{max} символов
+
+  images: Картинки
+
+  gflash:
+    #
+    # These are the translations for the different titles.
+    #
+    titles:
+      notice: Уведомляем
+      success: К успеху!
+      warning: Предупрждаем
+      error: Ошибочка
+      progress: В процессе
+    #
+    # Add gflash messages for controller actions:
+    # products:
+    #   create:
+    #     notice: "This is a notification"
+    #     error: "Something went wrong"
+    #
+    # Inside controller: 
+    # gflash :notice => true, :error => true
+    #
   date:
     formats:
       default: "%d.%m.%Y"

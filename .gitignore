@@ -3,7 +3,9 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 .idea
-~swp
+*swp
 public/stylesheets/compiled/*.css
 webrat.log
 tmp
+.sass-cache
+

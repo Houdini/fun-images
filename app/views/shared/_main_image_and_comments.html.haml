@@ -17,7 +17,12 @@
                 = message
       = f.hidden_field :author, :value => current_user.id
       = f.text_area :body
-      = f.submit t(:submit_comment), :name => nil
+      .submit-container
+        = f.submit t(:submit_comment), :name => nil
+        #characters_left{:class => "max-#{Comment.max_characters}"}
+          = t :max_characters, :max => Comment.max_characters
+        :javascript
+          document.getElementById('characters_left').innerHTML = '';
 
   .comments
     - @primary_image.comments.each do |comment|
@@ -30,7 +35,7 @@
         .body
           .menu
             .i_like
-              - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.author) or !(signed_in? :user and current_user.find_in_like_comments comment.id,  @primary_image.id)
+              - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.author) or !(signed_in? :user and current_user.find_in_like_comments comment.id,  @primary_image.id) or Rails.env == 'test'
                 = link_to t(:i_like), comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
               - if comment.rating > 0
                 = comment.rating

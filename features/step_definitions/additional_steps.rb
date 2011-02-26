@@ -44,3 +44,15 @@ Then /^(?:|I )should see i18n "([^"]*)"$/ do |text|
     assert_contain (I18n.t text)
   end
 end
+
+Then /^(?:|I )should see i18n "([^"]*)" "([^"]*)"$/ do |text, interpolation|
+  res = {}
+  interpolation_res = interpolation.split.each_pair do |key, value|
+    res[key.to_sym] = value
+  end
+  if response.respond_to? :should
+    response.should contain(I18n.t text, res)
+  else
+    assert_contain (I18n.t text, res)
+  end
+end

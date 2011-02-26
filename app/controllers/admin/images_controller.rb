@@ -1,7 +1,4 @@
-class ImagesController < ApplicationController
-
-  before_filter :authenticate_user!, :super_admin_level_access
-  layout 'admin'
+class Admin::ImagesController < ::AdminController
 
   # GET /images
   def index

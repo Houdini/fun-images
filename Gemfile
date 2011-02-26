@@ -7,12 +7,13 @@ gem 'bson_ext', '1.2.4'
 gem 'mongo', '1.2.4'
 gem 'mongoid', '2.0.0.rc.7'
 gem 'carrierwave', :git => "git://github.com/jnicklas/carrierwave.git"
-gem 'haml', '>= 3.0.25'
+gem 'haml', '>= 3.1.0.alpha.147'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
+gem "gritter"
 
 gem "devise", "1.1.7"
 
-gem 'compass', '0.10.6', :require => false
+gem 'compass', '0.11.beta.2', :require => false
 gem 'compass-colors', :require => false
 gem 'fancy-buttons', :require => false
 

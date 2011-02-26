@@ -1,9 +1,9 @@
 @import "compass/reset"
-@import "compass/css3/border-radius"
 @import "compass/utilities/lists/horizontal-list"
 @import "compass/utilities/links/link-colors"
 @import "compass/utilities/links/link-colors"
 @import "compass/utilities/general/min"
+@import "compass/css3"
 @import "blueprint"
 @import "blueprint/typography"
 
@@ -52,6 +52,20 @@ $light-gray: #e7e7e7
     width: 540px
 
   #comments
+    form
+      padding: 5px
+      +border-radius
+      background-color: #eee
+      textarea
+        height: 50px
+      textarea:focus
+        +box-shadow
+      .submit-container
+        display: block
+        clear: both
+        #characters_left
+          display: inline
+        
     margin-left: 550px
     .comments
       .comment

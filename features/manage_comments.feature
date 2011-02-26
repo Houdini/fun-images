@@ -32,8 +32,25 @@ Feature: Manage comments
     And go to the home page
     And I am logged in "user2"
     And I follow i18n "i_like"
-    Then what
+    Then I should see i18n "thanks_for_comment" "nick user2"
+    And I follow i18n "i_like"
+    Then I should see i18n "you_have_already_voted"
 
+  Scenario: Prevent same comment twice
+    Given I am logged in
+    Given an image
+    And go to the home page
+    And I fill in the following:
+      | comment_body | Comment body |
+    And I press "comment_submit"
+    And go to the home page
+    And I fill in the following:
+      | comment_body | Comment body |
+    And I press "comment_submit"
+    And I go to the home page
+    Then what
+    Then I should see i18n "same_comment_again"
+  
 
 
 

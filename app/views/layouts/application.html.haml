@@ -2,9 +2,15 @@
 %html
   %head
     -#= stylesheet_link_tag :all
-    = stylesheet_link_tag 'compiled/application.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'application', :media => 'screen, projection'
     = csrf_meta_tag
   %body
+    -if flash.has_key? :alert or flash.has_key? :notice
+      #notifications{:class => flash.has_key?(:alert) ? 'alert' : 'notice'}
+        = flash[:alert]
+        = flash[:notice]
+      :javascript
+        document.getElementById('notifications').style.display = 'none';
     #header
       - if signed_in? :user
         .user_menu
@@ -13,12 +19,11 @@
       - else
         = link_to t(:register), new_user_registration_path
         = link_to t(:new_user_session), new_user_session_path
-      = flash[:notice]
-      = flash[:error]
-      = flash[:alert]
     = yield
   - if Rails.env == :production
     = javascript_include_tag 'jquery.min'
     = javascript_include_tag 'application.min'
   - else
     = javascript_include_tag 'jquery', 'rails', 'application'
+    = include_gritter
+  = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")

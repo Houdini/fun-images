@@ -1,9 +1,13 @@
 FunImages::Application.routes.draw do
   match '/i/uploads/*path' => "gridfs_controller#serve"
 
+  namespace :admin do
+    root :to => 'welcome#index'
+    resources :images
+  end
+
   resources :images do
     resources :comments do
-#      get 'report_spam' #TODO complete when it's need
       get 'i_like'
     end
   end
