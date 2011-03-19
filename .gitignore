@@ -6,7 +6,7 @@ public/stylesheets/compiled/*.css
 public/stylesheets/*.css
 webrat.log
 tmp
-public/;-)/
+public/;-)
 
 # Temporary files of every sort
 .sass-cache
