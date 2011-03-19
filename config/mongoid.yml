@@ -16,7 +16,7 @@ test:
 
 # set these environment variables on your prod server
 production:
-  <<: *defaults
+  host: 10.1.1.1
   database: fun_images_production
 #  host: <%= ENV['MONGOID_HOST'] %>
 #  port: <%= ENV['MONGOID_PORT'] %>
