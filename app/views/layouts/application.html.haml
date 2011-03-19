@@ -1,8 +1,19 @@
+:plain
+  <!--
+   _____          _ _
+  |___  |_      _(_) |_
+     / /\ \ /\ / / | __|
+    / /  \ V  V /| | |_
+   /_/    \_/\_/ |_|\__|
+
+  -->
 !!!Strict
-%html
+%html{:lang => I18n.locale}
   %head
-    -#= stylesheet_link_tag :all
-    = stylesheet_link_tag 'application', :media => 'screen, projection'
+    %meta(charset='utf-8')
+    = stylesheet_link_tag 'sprites/logos', 'application', :media => 'screen, projection', :cache => true
+    %link(rel="shortcut icon" href="/favicon.png")
+    %title= page_title yield :page_title
     = csrf_meta_tag
   %body
     -if flash.has_key? :alert or flash.has_key? :notice
@@ -13,17 +24,41 @@
         document.getElementById('notifications').style.display = 'none';
     #header
       - if signed_in? :user
-        .user_menu
-          = current_user.nick
+        .main-navigation
+          = link_to t(:main_page), root_path
+          %span
+            |
+        .nick
+          %span#nick= current_user.nick
+        - if current_user.rating and current_user.rating > 0
+          .wit-power
+            %abbr{:title => t(:wit_power_explanation)}= "+" << current_user.rating.to_s
+        %span.semi-column :
+        .user-menu
+          - if controller.env['PATH_INFO'] == my_comments_path
+            %span= t :my_comments
+          - else
+            = link_to t(:my_comments), my_comments_path
+
+          - if controller.env['PATH_INFO'] == comments_i_like_path
+            %span= t :comments_i_like
+          - else
+            = link_to t(:comments_i_like), comments_i_like_path
+
+        .control-menu
           = link_to t(:log_out), destroy_user_session_path, :class => :log_out, :id => :log_out
       - else
         = link_to t(:register), new_user_registration_path
         = link_to t(:new_user_session), new_user_session_path
+    .logo
+      %h1
+        %a(href="/") 7wit
     = yield
-  - if Rails.env == :production
-    = javascript_include_tag 'jquery.min'
-    = javascript_include_tag 'application.min'
-  - else
-    = javascript_include_tag 'jquery', 'rails', 'application'
+    = javascript_include_tag 'js_translations'
+    - if Rails.env == :production
+      = javascript_include_tag 'application.min'
+    - else
+      = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'application'
     = include_gritter
-  = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
+    = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
+    = render 'shared/metrics' if Rails.env == :production

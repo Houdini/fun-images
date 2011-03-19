@@ -1,0 +1,47 @@
+.auth-way
+  .oauth
+    .title Регистрация через
+    = render 'devise/shared/oauth_links'
+  .direct
+    .title Регистрация на сайте
+    %dl
+      - if controller.controller_name != 'registrations'
+        %dt Войти
+        %dd
+          = form_tag '/users/sign_in', :method => :post do
+            %p
+              %label(for="user_email")= t :email
+              %br
+              %input#user_email(name="user[email]" type="text")
+            %p
+              %label(for="user_password")= t :password
+              %br
+              %input#user_password(name="user[password]" type="password")
+            %p
+              %input(name="user[remember_me]" type="hidden" value="0")
+              %input#user_remember_me(name="user[remember_me]" type="checkbox" value="1")
+              %label(for="user_remember_me")= t :remember_me
+            %p
+              %input#user_submit{:value => t(:sign_in)}(name="commit" type="submit")
+      %dt.selected Зарегистрироваться
+      %dd.selected
+        = form_tag("/users", :method => :post) do
+          - if controller.controller_name == 'registrations'
+            = devise_error_messages!
+          %p
+            = label_tag 'user_email', t(:email)
+            %br
+            = text_field_tag 'user[email]', nil, :id => :user_email
+
+          %p
+            = label_tag 'user_password', t(:password)
+            %br
+            = password_field_tag 'user[password]', nil, :id => :user_password
+
+          %p
+            = label_tag :user_password_confirmation, t(:password_confirmation)
+            %br
+            = password_field_tag 'user[password_confirmation]', nil,  :id => :user_password_confirmation
+
+          %p
+            = submit_tag t(:sign_up), :id => :user_submit

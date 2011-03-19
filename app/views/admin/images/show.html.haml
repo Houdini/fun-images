@@ -13,6 +13,16 @@
 
 = image_tag @image.image.url
 
+.comments
+  - @image.comments.each do |comment|
+    .comment
+      .author
+        = comment.user_author.email
+      .body
+        = comment.body
+      .links
+        = link_to t(:edit), edit_admin_image_comment_path(@image, comment)
+        = link_to t(:destroy_comment), [:admin, @image, comment], :confirm => 'Are u sure?', :method => :delete
+
+
 -#= link_to 'Edit', edit_time_path(@image)
-|
-= link_to 'Back', images_path

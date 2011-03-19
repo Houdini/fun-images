@@ -1,0 +1,33 @@
+development:
+  facebook:
+    app-id: 185462958161831
+    app-secret: cc58938486f7cf1c76d5d454cc49039c
+  twitter:
+    consumer-key: IcKnJhkFryoavWRfzEbNQ
+    consumer-secret: iUHbLRS6zPdWYd4DVFZc0k2HKMKbCBKmJ5JgaeWKxI
+  vkontakte:
+    app-id: 2223996
+    app-secret: fViF8kPlOTtr72pRTjPs
+
+
+production:
+  facebook:
+    app-id: 185462958161831
+    app-secret: cc58938486f7cf1c76d5d454cc49039c
+  twitter:
+    consumer-key: IcKnJhkFryoavWRfzEbNQ
+    consumer-secret: iUHbLRS6zPdWYd4DVFZc0k2HKMKbCBKmJ5JgaeWKxI
+  vkontakte:
+    app-id: 2223996
+    app-secret: fViF8kPlOTtr72pRTjPs
+
+test:
+  facebook:
+    app-id: secret
+    app-secret: secret
+  twitter:
+    consumer-key: secret
+    consumer-secret: secret
+  vkontakte:
+    app-id: secret
+    app-secret: secret

@@ -1,22 +1,17 @@
-# Russian localization for Ruby on Rails 2.2+
-# by Yaroslav Markin <yaroslav@markin.net>
-#
-# Be sure to check out "russian" gem (http://github.com/yaroslav/russian) for
-# full Russian language support in Rails (month names, pluralization, etc). 
-# The following is an excerpt from that gem.
-#
-# Для полноценной поддержки русского языка (варианты названий месяцев, 
-# плюрализация и так далее) в Rails 2.2 нужно использовать gem "russian" 
-# (http://github.com/yaroslav/russian). Следующие данные -- выдержка их него, чтобы
-# была возможность минимальной локализации приложения на русский язык.
-
 ru:
   register: Зарегистрироваться
-  new_user_session: Залогиниться
+  new_user_session: Войти
+  main_page: Стартовая
+  register_title: Это просто!
+  users: Пользователи
+  or: или
 
-  i_like: ❤
+#  i_like: ❤
+  i_like: Нравится
+  dont_like: Не нравится
   spam: Это спам
 
+  wit_power_explanation: wit-сила -- это сила вашего остроумия
 
 #  devise
   sign_up: Регистрация
@@ -32,19 +27,62 @@ ru:
   just_now: Только что
   minutes_ago: Несколько минут назад
   less_then_hour: Меньше часа назад
+  hours_back:
+    one: Час назад
+    few: %{count} часа назад
+    many: ${count} часов назад
+    other: ${count} часов назад
+
+  days_back:
+    one: День назад
+    few: %{count} дня назад
+    many: %{count} дней назад
+    other: %{count} дней назад
 
 
 
-  save_comment_successfuly: Комментарий успешно сохранен
+  save_comment_successfully: Комментарий успешно сохранен
   fix_errors: Пожалуйста, исправьте ошибки
 
-  thanks_for_comment: +1 к комментарию автора %{nick}
   you_have_already_voted: Вы уже голосовали
-  same_comment_again: Вы уже опубликовали этот комментарий на этой странице
 
   max_characters: Надо уложиться в %{max} символов
+  too_much_comments: Не больше трех комментариев на картинку
 
   images: Картинки
+  admin_root: Админка
+
+  edit: Редактировать
+  destroy_comment: Удалить комментарий
+
+  comments: Остроумные комментарии
+  my_comments: Мои комментарии
+  comments_i_like: Понравившиеся
+  comments_i_like_full: Понравившиеся комментарии
+  comments_i_like_empty: Вам пока ничего не понравилось :(
+  comment_input_title: Место для комментария
+  no_comments_text_no_user: Ворвитесь что бы оставить комментарий!
+  no_comments_text_logged_in: Юзер не ссы, оставь первый комментарий! 
+
+  direct_registration: На сайте
+  facebook: Facebook
+  twitter: Twitter
+  vkontakte: В Контакте
+
+  comment_added: Конмментарий успешно добавлен
+
+  notice:
+    thanks: Спасибо!
+    dislike_thanks: Тоже спасибо
+    future_image: Вы хитрец!
+    thanks_for_comment: +1 к комментарию %{nick}
+    dislike_comment: -1 к комментарию %{nick}
+
+  this_comment_is_liked_to_pople:
+    one: Нравится one
+    few: Нравится <b>%{count}</b> людям
+    other: Нравится <b>%{count}</b> людям
+  comment_like_to_one_person: Комментарий нравится %{person}
 
   gflash:
     #
@@ -206,6 +244,7 @@ ru:
       prompt: "Выберите: "
 
   activerecord:
+    errors_translation: Ошибки
     errors:
       template:
         header:
@@ -335,7 +374,7 @@ ru:
       send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
       confirmed: 'Your account was successfully confirmed. You are now signed in.'
     registrations:
-      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent to your e-mail.'
+      signed_up: 'Вы успешно зарегистрирвались. If enabled, a confirmation was sent to your e-mail.'
       updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     unlocks:

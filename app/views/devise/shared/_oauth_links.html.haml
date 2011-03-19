@@ -1,0 +1,7 @@
+%table
+  %tr
+    %td
+      = vkontakte_login_button(link_to_function( "<div class='logo vk'></div>".html_safe, "vkLogin.doLogin()" ))
+  %tr
+    %td
+      = link_to "<div class='logo facebook'></div>".html_safe, user_omniauth_authorize_path(:facebook)

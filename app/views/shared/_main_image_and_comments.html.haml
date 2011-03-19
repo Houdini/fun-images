@@ -1,9 +1,16 @@
 #main_image
-  %h1
-    = @primary_image.title
-  = image_tag @primary_image.image.url, :width => 540
+  - if @primary_image.title.size > 0
+    %h1= @primary_image.title
+  = image_tag @primary_image.image.url, :width => 540, :alt => (@primary_image.alt ? @primary_image.alt : '')
 #comments
-
+  .menu
+    %h2
+      - if @primary_image.comments.size == 1 and !signed_in? :user
+        = link_to t(:no_comments_text_no_user), '/users/sign_up'
+      - elsif @primary_image.comments.size == 1 and signed_in? :user
+        = t :no_comments_text_logged_in
+      - else
+        = t :comments
   - if signed_in? :user
     = form_for [@primary_image, @comment], :remote => true do |f|
       - if @comment.errors.any?
@@ -15,28 +22,43 @@
             - @comment.errors.full_messages.each do |message|
               %li
                 = message
-      = f.hidden_field :author, :value => current_user.id
+      %span.comment-input-title= t :comment_input_title
+      = f.hidden_field :user, :value => current_user.id
       = f.text_area :body
+      :javascript
+        document.getElementById('comment_body').style.height = '15px';
       .submit-container
         = f.submit t(:submit_comment), :name => nil
-        #characters_left{:class => "max-#{Comment.max_characters}"}
-          = t :max_characters, :max => Comment.max_characters
+        #characters_left{:class => "max-#{Comment.max_characters}"}= t :max_characters, :max => Comment.max_characters
         :javascript
           document.getElementById('characters_left').innerHTML = '';
-
+          document.getElementById('comment_submit').style.display = 'none';
   .comments
-    - @primary_image.comments.each do |comment|
+    :ruby
+      comments = @primary_image.comments.reverse
+    - comments.each do |comment|
+      - next if comment.new_record?
       .comment
-        .info
-          - if comment.created_at
-            %span.date
-              = time_ago_from comment.created_at
-          %a(href="#")= comment.user_author.nick if comment.author
+        .comment-info
+          .nick
+            %a(href="#")= comment.user.nick
+
+          .time-passed
+            %abbr{:title => comment.created_at}= time_ago_from comment.created_at
+
+          .like-to
+            - if comment.rating == 1
+              = t(:comment_like_to_one_person, :person => (link_to comment.find_like_users.first.nick, '#')).html_safe
+            - elsif comment.rating > 1
+              = t(:this_comment_is_liked_to_pople, :count => comment.rating).html_safe
+
         .body
-          .menu
-            .i_like
-              - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.author) or !(signed_in? :user and current_user.find_in_like_comments comment.id,  @primary_image.id) or Rails.env == 'test'
-                = link_to t(:i_like), comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
-              - if comment.rating > 0
-                = comment.rating
-          = comment.body
+          = simple_format comment.body
+        .i-like
+          - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.user and current_user.find_in_like_comments(comment.id).size == 0)
+            = link_to t(:i_like), image_comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
+          - elsif signed_in? :user and current_user.id.to_s != comment.user and current_user.find_in_like_comments(comment.id).size > 0
+            = link_to t(:dont_like), image_comment_dont_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
+
+          - if Rails.env == 'test'
+            = link_to t(:i_like), image_comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true

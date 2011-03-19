@@ -1,0 +1,31 @@
+.logo.vk
+{
+  width:32px;
+  height:32px;
+  background:url('/images/sprites/logos.png') no-repeat 0px 0px;
+  display:block;
+}
+
+.logo.facebook
+{
+  width:32px;
+  height:32px;
+  background:url('/images/sprites/logos.png') no-repeat 0px -32px;
+  display:block;
+}
+
+.logo.twitter
+{
+  width:32px;
+  height:32px;
+  background:url('/images/sprites/logos.png') no-repeat 0px -64px;
+  display:block;
+}
+
+.logo.google
+{
+  width:32px;
+  height:32px;
+  background:url('/images/sprites/logos.png') no-repeat 0px -96px;
+  display:block;
+}

@@ -1,0 +1,51 @@
+=form-content
+  +blueprint-form-layout
+  form
+    p
+      margin-top: 0
+    button, input[type=submit]
+      @include fancy-button-colors(#4a93bd, adjust-hue(#4a93bd, -120), darken(adjust-hue(#4a93bd, +120), 6))
+    input[type="password"], input[type="text"]
+      width: 180px
+      border: 1px solid #666 !important
+      box-sizing: border-box
+      outline: 0 none
+    .hidden
+      display: none
+  .auth-way
+    position: relative
+    .oauth
+      position: absolute
+      table
+        tr
+          height: 40px
+          vertical-align: top
+          td
+            text-align: left
+      .logo
+        right: 0px
+        position: static
+    .direct
+      margin-left: 130px
+      dl
+        position: relative
+        display: block
+        overflow: hidden
+        width: 100%
+        position: relative
+        dt
+          cursor: pointer
+          float: left
+          position: relative
+          display: block
+        dd
+          float: right
+          display: none
+          width: 100%
+          margin: 2em 0 0 -100%
+          .tab-content
+            padding: 10px
+        dt.selected
+          cursor: auto
+        dd.selected
+          display: block

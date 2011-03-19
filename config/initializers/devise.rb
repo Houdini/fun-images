@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  config.mailer_sender = "please-change-me@7wit.ru"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -43,7 +43,7 @@ Devise.setup do |config|
   # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
   # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
   # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = :bcrypt
+#  config.encryptor = :bcrypt
 
   # Setup a pepper to generate the encrypted password.
   config.pepper = "d88ea2f308925adae8da1b25794f7ecddf83958484b20ef22cc127949a92472fcdebf2666640b3ae2c37b3d1caadf2df6e30b846b1d26e8a5551be17d6015857"
@@ -139,4 +139,9 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
+  #
+
+  config.omniauth :facebook, APP_CONFIG.facebook['app-id'], APP_CONFIG.facebook['app-secret'], :scope => ''
+  config.omniauth :twitter, APP_CONFIG.twitter['consumer-key'], APP_CONFIG.twitter['consumer-secret']
+  config.omniauth :vkontakte, APP_CONFIG.vkontakte['app-id'], APP_CONFIG.vkontakte['app-secret']
 end

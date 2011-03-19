@@ -27,7 +27,7 @@ class Admin::ImagesController < ::AdminController
     @image.user_id = current_user.id
 
     if @image.save
-      redirect_to(@image, :notice => 'Image was successfully created.')
+      redirect_to([:admin, @image], :notice => 'Image was successfully created.')
     else
       render :action => "new"
     end
@@ -49,6 +49,6 @@ class Admin::ImagesController < ::AdminController
     @image = Image.find(params[:id])
     @image.destroy
 
-    redirect_to images_url
+    redirect_to admin_images_url
   end
 end

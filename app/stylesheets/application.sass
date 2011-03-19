@@ -6,24 +6,51 @@
 @import "compass/css3"
 @import "blueprint"
 @import "blueprint/typography"
+@import "fancy-buttons"
 
 @import "partials/default"
+@import "partials/devise"
+@import "partials/page"
+@import "partials/logo"
 
 $light-gray: #e7e7e7
+$dark-gray: #bbb
 
+//$default-box-shadow-h-offset: 5px
+//$default-box-shadow-v-offset: 5px
 #header
-  width: 100%
   height: 25px
   padding-top: 5px
   padding-left: 5px
-  background-color: $blueprint-background-color
-  border-bottom: 1px solid black
+  border-bottom: 1px dotted $light-gray
   margin-bottom: $default-margin*1.5
-  .user_menu
-    float: right
+  a
+    margin-right: 10px
+  .user-menu
+    float: left
     margin-right: 15px
+    a, span
+      margin-right: 15px
+  .control-menu
+    float: right
     .log_out
-      margin-left: 20px
+      margin-right: 20px
+  .nick
+    float: left
+    margin-right: 1px
+  .main-navigation
+    float: left
+    margin-right: 15px
+    a
+      margin-right: 10px
+  .wit-power
+    float: left
+    margin-right: 20px
+    abbr
+      color: green
+  .semi-column
+    float: left
+    margin-right: 5px
 
 #last_images
   margin-left: $default-margin !important
@@ -42,56 +69,93 @@ $light-gray: #e7e7e7
       color: $loud-color
 
 .content
-  margin-left: $default-margin
-  margin-right: $default-margin
-  +border-radius
-  +min-height(650px)
-  border: 1px solid $feedback-border-color
+  width: 1000px
+  margin: 0 auto
   #main_image
-    position: absolute
     width: 540px
+    float: left
 
   #comments
-    form
+    margin-left: 550px
+    width: 450px
+    h1
+      font-size: 1.5em
+      color: green
+    .menu
+      border-bottom: 1px solid $dark-gray
+      h2
+        font-size: 18px
+        padding-bottom: 10px
+        margin-bottom: 0
+        font-weight: bold
+    form.new_comment
       padding: 5px
-      +border-radius
-      background-color: #eee
+      border-bottom: 1px solid $light-gray
+      .comment-input-title
+        color: gray
+
       textarea
         height: 50px
+        outlike-color: black
       textarea:focus
         +box-shadow
       .submit-container
         display: block
-        clear: both
         #characters_left
           display: inline
-        
-    margin-left: 550px
+
     .comments
       .comment
         padding: 10px
-        .info
-          padding-bottom: 5px
-          span.date
+        padding-bottom: 25px
+        border-bottom: 1px dotted $light-gray
+        .comment-info
+          margin-bottom: 4px
+          .nick, .time-passed, .like-to
+            display: inline
+            margin-right: 4%
+          .nick
+            a
+              font-weight: bold
+              font-size: 12px
+          .time-passed
+            font-size: 11px
             color: gray
-            font-size: 90%
+            abbr
+              border-bottom: none
+            abbr:hover
+              border-bottom: 1px dotted #666
+          .like-to
+            font-size: 11px
+            color: gray
+            b
+              color: #323232
+              font-size: 12px
         .body
-          .menu
-            float: left
-            width: 50px
-            .i_like
-              color: gray
-              a
-                color: gray
-                text-decoration: none
-            .i_like:hover
-              a
-                color: #e87979
-            .like
-              a
-                color: red
-
+        .i-like
+          margin-top: 4px
+          font-size: 12px
+          display: none
+          position: absolute
       .comment:hover
         background-color: $light-gray
         .menu
           display: inline
+        .i-like
+          display: inline
+
+.dialog-box
+  +box-shadow
+  +border-radius
+  background: white
+  width: 400px
+  position: absolute
+  z-index: 5000
+  display: none
+  .dialog-content
+    padding: 10px
+    margin: 13px
+    color: #666
+    font-size: 11px
+    +form-content
+

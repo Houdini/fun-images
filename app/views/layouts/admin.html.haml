@@ -1,13 +1,17 @@
 !!!Strict
 %html
   %head
-    = stylesheet_link_tag 'admin.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'admin', 'sprites/logos', :media => 'screen, projection', :cache => true
     = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
     #header
       .menu
+        = link_to t(:admin_root), admin_root_path
         = link_to t(:images), admin_images_path
+        = link_to t(:users), admin_users_path
+        |
+        = link_to t(:log_out), destroy_user_session_path, :class => :log_out, :id => :log_out
       = current_user.email
     
     = yield

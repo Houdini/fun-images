@@ -5,6 +5,7 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'active_resource/railtie'
 require 'rails/test_unit/railtie'
+require 'active_assets/railtie'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,6 +13,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module FunImages
   class Application < Rails::Application
+    # config.middleware.insert_before ActionDispatch::Static, Rack::Runtime
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -32,6 +34,7 @@ module FunImages
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :ru
 
     # JavaScript files you want as :defaults (application.js is always included).

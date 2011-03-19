@@ -1,7 +1,7 @@
 %h1
   Listing images
 
-= link_to 'New image', new_image_path
+= link_to 'New image', new_admin_image_path
 
 .images
 - @images.each do |image|
@@ -12,6 +12,6 @@
       = image.description
     = image_tag image.image.thumb.url
     .menu
-      = link_to 'Show', image
-      = link_to 'Edit', edit_image_path(image)
-      = link_to 'Destroy', image, :confirm => 'Are u sure?', :method => :delete
+      = link_to 'Show', admin_image_path(image)
+      = link_to 'Edit', edit_admin_image_path(image)
+      = link_to 'Destroy', [:admin, image], :confirm => 'Are u sure?', :method => :delete

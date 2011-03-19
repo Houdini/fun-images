@@ -1,2 +1,12 @@
-%h1
-  hello
+%table
+  %tr
+    %th
+    - for image in @images
+      %th
+        = image.shown_date
+  %tr
+    %td
+      Total comments
+    - for image in @images
+      %td
+        = link_to image.comments.count, admin_image_path(image)

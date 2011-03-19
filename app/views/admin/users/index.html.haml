@@ -1,0 +1,15 @@
+%table
+  %tr
+    %th(width="32px")
+    %th
+      nick
+    %th e-mail
+  - @users.each do |user|
+    %tr
+      %td
+        - if user.oauth
+          - user.oauth.each do |oauth|
+            %div{:class => "logo #{oauth.split.first}"}
+      %td
+        = user.nick
+      %td= user.email

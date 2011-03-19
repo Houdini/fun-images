@@ -2,10 +2,24 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
-.idea
-*swp
 public/stylesheets/compiled/*.css
+public/stylesheets/*.css
 webrat.log
 tmp
-.sass-cache
+public/;-)/
 
+# Temporary files of every sort
+.sass-cache
+.DS_Store
+.idea
+.rvmrc
+.stgit*
+*.swap
+*.swo
+*.swp
+*~
+bin/*
+nbproject
+patches-*
+capybara-*.html
+dump.rdb

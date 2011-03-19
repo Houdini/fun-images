@@ -1,0 +1,28 @@
+.page
+  %h1
+    = t :comments_i_like_full
+    - if current_user.like_comments.size > 0
+      %span= "(#{current_user.like_comments.size})"
+  .comments_i_like
+    - if current_user.like_comments.size > 0
+      - current_user.like_comments.each do |comment_id|
+        - comment = Comment.where(:_id => comment_id).first
+        .comment
+          .comment-info
+            .nick
+              %a(href="#")= comment.user.nick
+
+            .time-passed
+              %abbr{:title => comment.created_at}= time_ago_from comment.created_at
+
+            -#.like-to
+            -#  - if comment.rating == 1
+            -#    = t(:comment_like_to_one_person, :person => (link_to comment.find_like_users.first.nick, '#')).html_safe
+            -#  - elsif comment.rating > 1
+            -#    = t(:this_comment_is_liked_to_pople, :count => comment.rating).html_safe
+
+          .body
+            = simple_format comment.body
+
+    - else
+      %h2= t :comments_i_like_empty

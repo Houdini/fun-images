@@ -4,17 +4,22 @@
 @import "blueprint/form"
 @import "fancy-buttons"
 
-+blueprint-form-layout
-*
-  border-width: 1px !important
-input, input:focus
-  border: 1px solid #666 !important
-  box-sizing: border-box
-.content
-  width: 600px
-  margin: 0px auto
-  fieldset
-    button, input[type=submit]
-      @include fancy-button-colors(#124c89, adjust-hue(#124c89, -120), darken(adjust-hue(#124c89, -120), 6))
-  ul
-    +horizontal-list
+
+@import "partials/devise"
+@import "partials/logo"
+
+body
+  background-color: #a8dbf9
+  +form-content
+  .form
+    background-color: white
+    width: 500px
+    padding: 20px
+    margin-left: 100px
+    position: fixed
+    top: 100px
+    h1
+      span
+        font-size: 14px
+    ul
+      +no-bullets

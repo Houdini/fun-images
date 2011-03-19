@@ -10,9 +10,30 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the main page/
+      '/'
 
     when /the new i_like page/
       new_i_like_path
+
+    when /comments I like/
+      comments_i_like_path
+
+    when /my comments/
+      my_comments_path
+
+    when /admin last image/
+      image = Image.last
+      admin_image_path image
+
+    when /the sign up page/
+      new_user_registration_path
+
+    when /facebook callback/
+      '/users/auth/facebook/callback'
+
+    when /vkontakte callback/
+      '/users/auth/vkontakte/callback'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

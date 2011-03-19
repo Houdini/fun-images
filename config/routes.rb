@@ -3,20 +3,32 @@ FunImages::Application.routes.draw do
 
   namespace :admin do
     root :to => 'welcome#index'
-    resources :images
+    resources :images do 
+      resources :comments, :only => [:destroy, :edit]
+    end
+    resources :users, :only => :index
   end
 
-  resources :images do
-    resources :comments do
+  resources :images, :only => [] do
+    resources :comments, :only => [:new, :create] do
       get 'i_like'
+      get 'dont_like'
     end
   end
+
+  namespace :my do
+    resources :comments, :only => [:index] 
+  end
+  match 'comments/i_like' => 'my/comments#i_like'
+
+  # js
+  match 'javascripts/js_translations' => 'js_translations#index'
 
   root :to => "welcome#index"
 
   match '/:shown_date' => 'welcome#index_with_date', :constraints => {:shown_date => /\d{4}-\d{2}-\d{2}/}
 
-  devise_for :users do
+  devise_for :users, :controllers => {:omniauth_callbacks => 'authentications'} do
     root :to => 'welcome#index'
   end
 

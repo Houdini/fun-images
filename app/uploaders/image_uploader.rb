@@ -4,10 +4,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  storage :grid_fs
+  storage :file
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+#    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    ";-)/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -24,7 +25,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-  process :resize_to_fit => [65, 65]
+    process :resize_to_fit => [65, 65]
+    process :convert => 'png'
   end
 
   process :resize_to_fit => [540, 400]
@@ -37,10 +39,14 @@ class ImageUploader < CarrierWave::Uploader::Base
      %w(jpg jpeg png)
   end
 
-  # Override the filename of the uploaded files:
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+#  Override the filename of the uploaded files:
+  def filename
+     "i.png" if original_filename
+  end
+
+def cache_dir
+  "#{Rails.root}/tmp/uploads"
+end
 
 #  def crop_image
 #    manipulate! do |img|

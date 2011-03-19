@@ -1,21 +1,25 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'#, :git => 'git://github.com/rails/rails.git'
 
 gem 'rmagick'
 gem 'bson_ext', '1.2.4'
 gem 'mongo', '1.2.4'
 gem 'mongoid', '2.0.0.rc.7'
-gem 'carrierwave', :git => "git://github.com/jnicklas/carrierwave.git"
+gem 'carrierwave', '0.5.2'#:git => "git://github.com/jnicklas/carrierwave.git"
 gem 'haml', '>= 3.1.0.alpha.147'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem "gritter"
+gem "capistrano"
 
-gem "devise", "1.1.7"
+gem "devise", "1.2.rc2"
+gem "oa-oauth", '0.2.0.beta5', :require => 'omniauth/oauth'
+gem 'oa-vkontakte', '0.2.1'
 
 gem 'compass', '0.11.beta.2', :require => false
-gem 'compass-colors', :require => false
-gem 'fancy-buttons', :require => false
+gem 'compass-colors', '0.3.1', :require => false
+gem 'fancy-buttons', '1.1.0.alpha.1', :require => false
+gem 'active_assets'
 
 gem 'jquery-rails', '>= 0.2.7'
 
@@ -25,6 +29,8 @@ gem 'database_cleaner'
 gem 'launchy'
 #gem 'watchr'
 gem 'spork', '~> 0.9.0.rc3'
+gem 'newrelic_rpm'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

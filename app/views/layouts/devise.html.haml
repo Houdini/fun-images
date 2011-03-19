@@ -1,15 +1,29 @@
+:plain
+  <!--
+   _____          _ _
+  |___  |_      _(_) |_
+     / /\ \ /\ / / | __|
+    / /  \ V  V /| | |_
+   /_/    \_/\_/ |_|\__|
+
+  -->
 !!!Strict
-%html
+%html{:lang => I18n.locale}
   %head
-    = stylesheet_link_tag 'devise.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'devise', 'sprites/logos', :media => 'screen, projection', :cache => true
+    = javascript_include_tag 'jquery'
     = javascript_include_tag 'application'
-    = csrf_meta_tag
+    %link(rel="shortcut icon" href="/favicon.png")
+    %title
+      = yield :title
+  = csrf_meta_tag
   %body
     .notice
       = flash[:notice]
     .error
       = flash[:error]
-    %h1
-      = link_to 'На главную', root_path
-    .content
-      = yield
+    .logo
+      %h1
+        %a(href="/") 7wit
+    = yield
+    = render 'shared/metrics' if Rails.env == :production

@@ -3,7 +3,7 @@
 - else
   %h1 Editing image
 
-= form_for @image, :html => {:multipart => true} do |f|
+= form_for [:admin, @image], :html => {:multipart => true} do |f|
   -if @image.errors.any?
     #error_explanation
       %h2
@@ -30,6 +30,6 @@
   .actions
     = f.submit
 
-= link_to 'Show', @image
+= link_to 'Show', [:admin, @image]
 |
-= link_to 'Back', images_path
+= link_to 'Back', admin_images_path

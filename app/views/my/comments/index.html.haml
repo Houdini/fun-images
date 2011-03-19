@@ -1,0 +1,6 @@
+%h1= t :my_comments
+
+.my-comments
+  - current_user.comments.each do |comment|
+    .comment
+      .body= comment.body

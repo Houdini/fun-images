@@ -1,6 +1,7 @@
 class AdminController < ActionController::Base
   layout 'admin'
   protect_from_forgery
+  before_filter :authenticate_user!, :super_admin_level_access
 
   protected
   def super_admin_level_access
