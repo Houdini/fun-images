@@ -11,7 +11,7 @@
 %html{:lang => I18n.locale}
   %head
     %meta(charset='utf-8')
-    = stylesheet_link_tag 'sprites/logos', 'application', :media => 'screen, projection', :cache => true
+    = stylesheet_link_tag 'sprites/logos', 'application', :media => 'screen, projection'
     %link(rel="shortcut icon" href="/favicon.png")
     %title= page_title yield :page_title
     = csrf_meta_tag
