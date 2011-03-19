@@ -33,13 +33,13 @@ before "deploy:symlink", "deploy:bundle_install"
 after "deploy:update_code", "symlink_files"
 
 task :symlink_files do
-  ['images/;-)'].each do |folder|
+  [';-)'].each do |folder|
     path  = "#{release_path}/../../shared/files/#{folder}"
     symlink_path = "#{release_path}/public/#{folder}"
-    run "mkdir -p #{path}"
+    run "mkdir -p \"#{path}\""
     puts "Symlinking #{folder} folder"
-    run "rm -rf #{symlink_path}"
-    run "ln -sf #{path} #{symlink_path}"
+    run "rm -rf \"#{symlink_path}\""
+    run "ln -sf \"#{path}\" \"#{symlink_path}\""
   end
 end
 

@@ -7,6 +7,7 @@ public/stylesheets/*.css
 webrat.log
 tmp
 public/;-)
+.rvmrc
 
 # Temporary files of every sort
 .sass-cache
