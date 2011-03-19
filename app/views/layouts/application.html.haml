@@ -61,4 +61,4 @@
       = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'application'
     = include_gritter
     = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
-    = render 'shared/metrics'
+    = render 'shared/metrics' if Rails.env.production?
