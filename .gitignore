@@ -3,7 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 public/stylesheets/compiled/*.css
-public/stylesheets/*.css
 webrat.log
 tmp
 public/;-)
