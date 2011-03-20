@@ -38,7 +38,7 @@ class Admin::ImagesController < ::AdminController
     @image = Image.find(params[:id])
 
     if @image.update_attributes(params[:image])
-      redirect_to(@image, :notice => 'Image was successfully updated.')
+      redirect_to([:admin, @image], :notice => 'Image was successfully updated.')
     else
       render :action => "edit"
     end
