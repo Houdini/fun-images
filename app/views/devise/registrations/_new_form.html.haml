@@ -1,7 +1,7 @@
 .auth-way
   .oauth
     .title Регистрация через
-    = render 'devise/shared/oauth_links'
+    = render :template => 'devise/shared/_oauth_links.html.haml'
   .direct
     .title Регистрация на сайте
     %dl

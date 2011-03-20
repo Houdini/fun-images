@@ -23,12 +23,14 @@ gem 'active_assets'
 
 gem 'jquery-rails', '>= 0.2.7'
 
-gem 'cucumber-rails', '0.3.2'
-gem 'webrat', :git => 'git://github.com/kulbirsaini/webrat.git'
-gem 'database_cleaner'
-gem 'launchy'
-#gem 'watchr'
-gem 'spork', '~> 0.9.0.rc3'
+group :test do
+  gem 'cucumber-rails', '0.3.2'
+  gem 'webrat', :git => 'git://github.com/kulbirsaini/webrat.git'
+  gem 'database_cleaner'
+  gem 'launchy'
+  #gem 'watchr'
+  gem 'spork', '~> 0.9.0.rc3'
+end
 gem 'newrelic_rpm'
 
 # Bundle edge Rails instead:
