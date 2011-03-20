@@ -55,7 +55,7 @@
         .body
           = simple_format comment.body
         .i-like
-          - if !signed_in? :user or (signed_in? :user and current_user.id.to_s != comment.user and current_user.find_in_like_comments(comment.id).size == 0)
+          - if !signed_in? :user or (signed_in? :user and current_user.id != comment.user_id and current_user.find_in_like_comments(comment.id).size == 0)
             = link_to t(:i_like), image_comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
           - elsif signed_in? :user and current_user.id.to_s != comment.user and current_user.find_in_like_comments(comment.id).size > 0
             = link_to t(:dont_like), image_comment_dont_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
