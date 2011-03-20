@@ -37,8 +37,6 @@ Feature: Manage comments
     And I go to the comments I like
     Then I should not see "Comment body"
 
-
-
   Scenario: Admin should delete comment
     Given I am logged in
     Given an image
@@ -116,3 +114,15 @@ Feature: Manage comments
       | comment_body | Comment body4 |  
     And I press "comment_submit"
     Then I should see i18n "too_much_comments"
+
+  Scenario: User cannot vote for his comment
+    Given I am logged in
+    Given an image
+    And go to the home page
+    And I fill in the following:
+      | comment_body | Comment body4 |
+    And I press "comment_submit"
+    And I go to the home page
+    And I follow i18n "i_like"
+    And I go to the home page
+    Then I should not see i18n "notice.thanks_for_comment" "nick user"

@@ -66,6 +66,18 @@ Then /^(?:|I )should not see i18n "([^"]*)"$/ do |text|
   end
 end
 
+Then /^(?:|I )should not see i18n "([^"]*)" "([^"]*)"$/ do |text, interpolation|
+  res = {}
+  interpolation_res = interpolation.split.each_pair do |key, value|
+    res[key.to_sym] = value
+  end
+  if response.respond_to? :should_not
+    response.should_not contain(I18n.t text, res)
+  else
+    assert_not_contain (I18n.t text, res)
+  end
+end
+
 Then /^(?:|I )should see i18n "([^"]*)" "([^"]*)"$/ do |text, interpolation|
   res = {}
   interpolation_res = interpolation.split.each_pair do |key, value|

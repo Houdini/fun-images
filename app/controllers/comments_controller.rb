@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     image = Image.find :first, :conditions => {:shown_date => params[:image_id].to_date}
     comment = image.comments.find params[:comment_id]
     comment.like_users ||= []
-    unless comment.like_users.index current_user.id
+    if !comment.like_users.index(current_user.id) and comment.user_id != current_user.id
 
       comment.rating += 1
       comment.like_users << current_user.id
@@ -42,7 +42,12 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.json {render :json => {:status => :ok, :like => :'1'}}
         format.html {redirect_to :back, :notice => t(:'notice.thanks_for_comment', :nick => current_user.nick)}
-      end    
+      end
+    elsif comment.user_id == current_user.id
+      respond_to do |format|
+        format.json {render :json => {:status => :error, :message => t(:'alert.author_vote')}}
+        format.html {redirect_to :back, :alert => t(:'alert.author_vote')}
+      end
     else
       respond_to do |format|
         format.json {render :json => {:status => :double_vote}}

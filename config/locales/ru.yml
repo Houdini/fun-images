@@ -77,6 +77,8 @@ ru:
     future_image: Вы хитрец!
     thanks_for_comment: +1 к комментарию %{nick}
     dislike_comment: -1 к комментарию %{nick}
+  alert:
+    author_vote: Вы не можете голосовать за свой же комментарий
 
   this_comment_is_liked_to_pople:
     one: Нравится one
