@@ -1,6 +1,10 @@
-%h1= t :my_comments
+.page
+  %h1= t :my_comments
 
-.my-comments
-  - current_user.comments.each do |comment|
-    .comment
-      .body= comment.body
+  .my-comments
+    - if current_user.comments.size > 0
+      - current_user.comments.each do |comment|
+        .comment
+          .body= comment.body
+    - else
+      %h2= t :'my.you_have_no_comments'

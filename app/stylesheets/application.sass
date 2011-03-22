@@ -8,6 +8,8 @@
 @import "blueprint/typography"
 @import "fancy-buttons"
 
+$red: #e13535
+
 @import "partials/default"
 @import "partials/devise"
 @import "partials/page"
@@ -38,6 +40,11 @@ $dark-gray: #bbb
   .nick
     float: left
     margin-right: 1px
+    a
+      margin-right: 0px
+    small
+      font-size: 12px
+      color: $link-color
   .main-navigation
     float: left
     margin-right: 15px
@@ -163,3 +170,9 @@ $dark-gray: #bbb
     font-size: 11px
     +form-content
 
+#error_explanation
+  ul
+    margin: 5px 0
+    li
+      font-size: 14px
+      color: $red

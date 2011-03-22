@@ -35,6 +35,9 @@ module NavigationHelpers
     when /vkontakte callback/
       '/users/auth/vkontakte/callback'
 
+    when /my account index/
+      my_account_index_path
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

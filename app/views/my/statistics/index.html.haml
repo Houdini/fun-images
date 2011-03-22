@@ -1,0 +1,16 @@
+.page
+  %h1= t :'my.overview'
+
+  .menu
+    = render 'my/shared/menu'
+  .content
+    .nick= current_user.nick
+    %ul.statistics
+      %li
+        %span
+          = t(:'my.statistics.your_rating')
+        Скоро добавится
+      %li
+        %span
+          = t :'my.statistics.comments_count'
+        = current_user.comments.count

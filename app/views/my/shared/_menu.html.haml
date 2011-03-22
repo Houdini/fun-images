@@ -1,0 +1,13 @@
+%ul
+  %li
+    - if params[:controller] == 'my/account'
+      = t :'my.account.profile'
+    - else
+      %a(href="/my/account")
+        = t :'my.account.profile'
+  %li
+    - if params[:controller] == 'my/statistics'
+      = t :'my.statistics.name'
+    - else
+      %a(href="/my/statistics")
+        = t :'my.statistics.name'

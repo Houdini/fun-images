@@ -11,7 +11,7 @@
 %html{:lang => I18n.locale}
   %head
     %meta(charset='utf-8')
-    = stylesheet_link_tag 'sprites/logos', 'application', :media => 'screen, projection'
+    = stylesheet_link_tag 'sprites/logos', 'application', 'columns', :media => 'screen, projection'
     %link(rel="shortcut icon" href="/favicon.png")
     %title= page_title yield :page_title
     = csrf_meta_tag
@@ -29,7 +29,13 @@
           %span
             |
         .nick
-          %span#nick= current_user.nick
+          %span#nick
+            - if current_user.nick_changed?
+              ?-?-?-?
+            - else
+              %a(href="/my/account")
+                = current_user.nick
+              -#%small ▼
         - if current_user.rating and current_user.rating > 0
           .wit-power
             %abbr{:title => t(:wit_power_explanation)}= "+" << current_user.rating.to_s
@@ -61,4 +67,5 @@
       = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'application'
     = include_gritter
     = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
+    = js add_gritter flash[:alert], :image => :error, :sticky => false, :title => t(:"gflash.titles.error")
     = render 'shared/metrics' if Rails.env.production?

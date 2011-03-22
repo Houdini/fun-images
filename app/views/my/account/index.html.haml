@@ -1,0 +1,18 @@
+.page
+  %h1= t :'my.overview'
+
+  .menu
+    = render 'my/shared/menu'
+  .content
+    = form_tag change_nick_my_account_index_url, :method => :post do
+      %p
+        %label(for="user_nick")= t(:'my.account.nick') + ':'
+        %br
+        - if current_user.errors.any?
+          #error_explanation
+            %ul
+              - current_user.errors.full_messages.each do |message|
+                %li
+                  = message
+        %input#user_nick{:value => current_user.nick}(name="account[nick]")
+      %input#account_submit{:value => t(:save)}(name="commit" type="submit")

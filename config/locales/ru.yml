@@ -70,6 +70,20 @@ ru:
   vkontakte: В Контакте
 
   comment_added: Конмментарий успешно добавлен
+  save: Сохранить
+  saved_successfully: Изменения сохранены
+
+  my:
+    you_have_no_comments: "Не ссы! Напиши хоть один... пожалуйста :)"
+    overview: Обзор
+    account:
+      overview: Обзор
+      profile: Профайл
+      nick: Ник
+    statistics:
+      name: Статистика
+      comments_count: "Количество ваших комментариев:"
+      your_rating: "Ваш wit-рейтинг:"
 
   notice:
     thanks: Спасибо!

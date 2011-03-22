@@ -26,10 +26,8 @@ class User
   references_many :comments
   embeds_many :user_like_comments
 
-  def before_save
-    unless nick
-      self.nick = email.split('@').first
-    end
+  def before_create
+    self.nick = email.split('@').first unless nick
   end
 
   def nick
@@ -38,6 +36,17 @@ class User
     else
       email.split('@').first
     end
+  end
+
+  def validate_nick
+    self.nick = '' if nick.class == NilClass
+    self.nick.strip!
+    self.nick.sub!  /\A.*(\\|\/)/, ''
+    self.nick.gsub! /[^\w\.\-]/, '_'
+    errors.add(I18n.t(:'my.account.nick'), I18n.t(:'activerecord.errors.messages.nick_empty')) if nick.size == 0
+    return if errors.size > 0
+    errors.add(I18n.t(:'my.account.nick'), I18n.t(:'activerecord.errors.messages.taken')) if nick_changed? and User.where(:nick => nick).first
+    errors.add(I18n.t(:'my.account.nick'), I18n.t(:'activerecord.errors.messages.too_long', :count => 20)) if nick.size > 20
   end
 
   def find_in_like_comments comment_id

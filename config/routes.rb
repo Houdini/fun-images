@@ -17,7 +17,13 @@ FunImages::Application.routes.draw do
   end
 
   namespace :my do
-    resources :comments, :only => [:index] 
+    resources :comments, :only => [:index]
+    resources :account, :only => [:index] do
+      collection do
+        post 'change_nick'
+      end
+    end
+    resources :statistics, :only => :index
   end
   match 'comments/i_like' => 'my/comments#i_like'
 
