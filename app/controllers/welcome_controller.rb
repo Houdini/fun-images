@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
     redirect_to root_url, :notice => t(:"notice.future_image") and return if date_to_show > Date.today
 
     @primary_image = Image.find :first, :conditions => {:shown_date => params[:shown_date].to_date}
-    @images = Image.all(:conditions => {:shown_date.gt => @primary_image.shown_date - 2.days}, :limit => @@image_limit)
+    @images = Image.all(:conditions => {:shown_date.gt => @primary_image.shown_date - 3.days}, :limit => @@image_limit)
 
     redirect_to root_url and return if @images.size <= 1
 
