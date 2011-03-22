@@ -64,7 +64,7 @@ class User
         else
           facebook_data['extra']['user_hash']['first_name']
         end
-        user = User.create :nick => nick, :oauth => ["facebook #{facebook_data['uid']}"]
+        user = User.create :nick => nick, :oauth => ["facebook #{facebook_data['uid']}"], :oauth_data => {:facebook => facebook_data}
       end
       user
     end
