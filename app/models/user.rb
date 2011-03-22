@@ -19,6 +19,7 @@ class User
   field :nick
   field :avatar
   field :oauth, :type => Array, :default => []
+  field :oauth_data, :type => Hash, :default => {}
   field :like_comments, :type => Array, :default => []
   field :rating, :type => Integer, :default => 0
 
@@ -72,13 +73,35 @@ class User
       if user = User.where(:oauth.in => ["vk #{vk_data['uid']}"]).first
         user
       else
-        nick = if vk_data.has_key?("user_info") and vk_data['user_info'].has_key? 'nickname'
+        nick = if vk_data.has_key? 'nickname' and vk_data['nickname'] != ''
+          vk_data['nickname']
+        elsif vk_data.has_key? 'user_info' and vk_data['user_info'].has_key? 'nickname' and vk_data['user_info']['nickname'] != ''
           vk_data['user_info']['nickname']
-        else
-          vk_data['extra']['user_hash']['first_name']
+        elsif vk_data.has_key? 'first_name'
+          vk_data['first_name']
+        elsif vk_data.has_key? 'user_info' and vk_data['user_info'].has_key? 'first_name' and vk_data['user_info']['first_name'] != ''
+          vk_data['user_info']['first_name']
         end
 
-        user = User.create :nick => nick, :oauth => ["vk #{vk_data['uid']}"], :avatar => vk_data['user_info']['image']
+        avatar = if vk_data.has_key? 'photo'
+          vk_data['photo']
+        elsif vk_data.has_key? 'user_info' and vk_data['user_info'].has_key? 'image'
+          vk_data['user_info']['image']
+        end
+
+#        i, new_nick = 0, nick
+#        while User.where(:nick => new_nick).first.class != NilClass
+#          i += 1
+#          new_nick = nick + i.to_s
+#        end
+
+#        #TODO finish
+#        p 'start'
+#        p User.all.to_a
+#        p User.where(:nick => new_nick).first
+#        p 'end'
+
+        user = User.create :nick => nick, :oauth => ["vk #{vk_data['uid']}"], :avatar => avatar, :oauth_data => {:vk => vk_data}
       end
       user
     end

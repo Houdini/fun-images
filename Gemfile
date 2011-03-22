@@ -30,6 +30,7 @@ group :test do
   gem 'launchy'
   #gem 'watchr'
   gem 'spork', '~> 0.9.0.rc3'
+  gem 'rspec-rails', '2.5.0'
 end
 gem 'newrelic_rpm'
 
