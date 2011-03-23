@@ -12,7 +12,7 @@
       - else
         = t :comments
   - if signed_in? :user
-    = form_for [@primary_image, @comment], :remote => true do |f|
+    = form_for [@primary_image, @comment], remote: true do |f|
       - if @comment.errors.any?
         #error_explanation
           %h2
@@ -23,7 +23,7 @@
               %li
                 = message
       %span.comment-input-title= t :comment_input_title
-      = f.hidden_field :user, :value => current_user.id
+      = f.hidden_field :user, value: current_user.id
       = f.text_area :body
       :javascript
         document.getElementById('comment_body').style.height = '15px';

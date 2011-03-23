@@ -24,6 +24,10 @@ class Comment
 
   before_destroy :remove_all_mentions
 
+  def editable?
+    like_users.size == 0 and created_at  + 2.hours < Time.now
+  end
+
 
   class << self
     def max_characters; @@max_characters end

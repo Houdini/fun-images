@@ -60,6 +60,10 @@ namespace :deploy do
   end
 end
 
-task :migrating, :roles => :app do
-  run "cd #{current_path} && rake migrate:shown_date_date_to_integer RAILS_ENV=production"
-end
+
+
+# migrate on 23 apr 2011
+#
+#task :migrating, :roles => :app do
+#  run "cd #{current_path} && rake migrate:shown_date_date_to_integer RAILS_ENV=production"
+#end

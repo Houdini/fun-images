@@ -24,8 +24,8 @@
     = f.label :image
     = f.file_field :image
   .field
-    = f.label :shown_date
-    = f.date_select :shown_date
+    = label_tag :shown_date
+    = select_date(@image.shown_date.nil? ? Date.today : @image.shown_date.to_date, {:prefix => 'shown_date'}, {})
 
   .actions
     = f.submit

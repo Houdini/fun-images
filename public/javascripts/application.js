@@ -98,6 +98,10 @@ $(function(){
                 image: '/images/gritter/error.png'
             });
         }
+
+        document.getElementById('comment_submit').disabled = false;
+    }).bind('ajax:beforeSend', function(xhr, settings){
+        document.getElementById('comment_submit').disabled = true;
     });
 
     $('#comment_body').click(function(){

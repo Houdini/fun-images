@@ -1,5 +1,7 @@
 class Admin::ImagesController < ::AdminController
 
+  before_filter :convert_date_to_integer, :only => [:create, :update]
+
   # GET /images
   def index
     @images = Image.all
@@ -24,6 +26,7 @@ class Admin::ImagesController < ::AdminController
   # POST /images
   def create
     @image = Image.new(params[:image])
+    @image.shown_date = @shown_date.to_i
     @image.user_id = current_user.id
 
     if @image.save
@@ -36,8 +39,7 @@ class Admin::ImagesController < ::AdminController
   # PUT /images/1
   def update
     @image = Image.find(params[:id])
-
-    if @image.update_attributes(params[:image])
+    if @image.update_attributes(params[:image].merge({:shown_date => @shown_date.to_i}))
       redirect_to([:admin, @image], :notice => 'Image was successfully updated.')
     else
       render :action => "edit"
@@ -50,5 +52,10 @@ class Admin::ImagesController < ::AdminController
     @image.destroy
 
     redirect_to admin_images_url
+  end
+
+  private
+  def convert_date_to_integer
+    @shown_date = Date.parse "#{params[:shown_date][:year]}-#{params[:shown_date][:month]}-#{params[:shown_date][:day]}"
   end
 end
