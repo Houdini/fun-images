@@ -11,7 +11,7 @@
 %html{:lang => I18n.locale}
   %head
     %meta(charset='utf-8')
-    = stylesheet_link_tag 'sprites/logos', 'application', 'columns', :media => 'screen, projection'
+    = stylesheet_link_tag 'sprites/logos', 'application', 'columns', 'gritter/jquery.gritter', :media => 'screen, projection', :cache => '7wit'
     %link(rel="shortcut icon" href="/favicon.png")
     %title= page_title yield :page_title
     = csrf_meta_tag
@@ -64,8 +64,7 @@
     - if Rails.env.production?
       = javascript_include_tag 'application.min'
     - else
-      = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'application'
-    = include_gritter
+      = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'gritter/jquery.gritter.min', 'application'
     = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
     = js add_gritter flash[:alert], :image => :error, :sticky => false, :title => t(:"gflash.titles.error")
     = render 'shared/metrics' if Rails.env.production?

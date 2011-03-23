@@ -2,6 +2,7 @@ namespace :compress do
   desc "compress javascripts"
   task :js => :environment do
     files = %w(mustache jquery rails jquery.cookie application)
+    files << 'gritter/jquery.gritter.min'
     `rm -f #{Rails.root.to_s}/public/javascripts/temp.js`
     files.each do |file|
       `cat #{Rails.root.to_s}/public/javascripts/#{file}.js >> #{Rails.root.to_s}/public/javascripts/temp.js`
