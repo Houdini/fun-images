@@ -1,12 +1,16 @@
 %ul#last_images
   - index_to_show = -1
   - @images.each_with_index do |image, index|
-    %li{:class => image.shown_date == @primary_image.shown_date ? 'active' : ''}
+    - active = image.shown_date == @primary_image.shown_date
+    %li{:class => active ? 'active' : ''}
       .image-container
-        %a{:href => "/#{image.shown_date.to_s}"}
+        - if active
           = image_tag image.image.thumb.url
+        - else
+          %a{:href => "/#{image.shown_date.to_string_date}"}
+            = image_tag image.image.thumb.url
       %center
         .date
-          = l image.shown_date, :format => :date_month
+          = l image.shown_date.to_date, :format => :date_month
 .content
   = render 'shared/main_image_and_comments'

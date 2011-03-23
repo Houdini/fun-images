@@ -7,7 +7,7 @@ class Image
   field :title, :type => String
   field :description, :type => String
   mount_uploader :image, ImageUploader
-  field :shown_date, :type => Date
+  field :shown_date, :type => Integer
   field :alt
 
   attr_accessible :title, :description, :image, :shown_date
