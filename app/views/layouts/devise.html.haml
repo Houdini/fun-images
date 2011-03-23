@@ -10,7 +10,7 @@
 !!!Strict
 %html{:lang => I18n.locale}
   %head
-    = stylesheet_link_tag 'devise', 'sprites/logos', :media => 'screen, projection'
+    = stylesheet_link_tag 'devise', 'sprites/logos', :media => 'screen, projection', :cache => 'reg_all'
     = javascript_include_tag 'jquery'
     = javascript_include_tag 'application'
     %link(rel="shortcut icon" href="/favicon.png")

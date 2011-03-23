@@ -1,7 +1,7 @@
 !!!Strict
 %html
   %head
-    = stylesheet_link_tag 'admin', 'sprites/logos', :media => 'screen, projection'
+    = stylesheet_link_tag 'admin', 'sprites/logos', :media => 'screen, projection', :cache => 'admin_cache'
     = javascript_include_tag 'application'
     = csrf_meta_tag
   %body
