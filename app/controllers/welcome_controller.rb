@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
     offset = (Date.today - @primary_image.shown_date.to_date).to_i
     offset = 0 unless offset < @@image_limit/2
 
-    @images = Image.where(shown_date: {:'$gte' => (pr_image_sh_date - @@image_limit/2 - offset).to_i, :'$lte' => (pr_image_sh_date + @@image_limit/2).to_i}).asc(:shown_date)
+    @images = Image.where(shown_date: {:'$gte' => (pr_image_sh_date - @@image_limit/2 - offset).to_i, :'$lte' => (pr_image_sh_date + @@image_limit/2).to_i, :'$lt' => date_today}).asc(:shown_date)
 
     if @images.count < @@image_limit
       @images = @images.to_a + Image.where(shown_date: {:'$gt' => @images.last.shown_date, :'$lte' => date_today}).asc(:shown_date).limit(@@image_limit - @images.count).to_a
