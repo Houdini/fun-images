@@ -1,3 +1,5 @@
+require "whenever/capistrano"
+
 set :application, "fun-images"
 set :repository,  "git@github.com:Houdini/fun-images.git"
 set :user, 'houdini'
@@ -60,6 +62,10 @@ namespace :deploy do
   end
 end
 
+desc "create mongoid indexes"
+task :create_indexes, roles: :app do
+  run "cd #{current_path} && rake db:mongoid:create_indexes RAILS_ENV=production"
+end
 
 
 # migrate on 23 apr 2011
