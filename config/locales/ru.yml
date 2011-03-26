@@ -21,7 +21,7 @@ ru:
   sign_in: Войти
   forgot_your_password: Забыли пароль?
   remember_me: Запомнить меня
-  submit_comment: Отправить
+  submit_comment: Опубликовать
   log_out: Выйти
 
   just_now: Только что
@@ -62,7 +62,10 @@ ru:
   comments_i_like_empty: Вам пока ничего не понравилось :(
   comment_input_title: Место для комментария
   no_comments_text_no_user: Ворвитесь что бы оставить комментарий!
-  no_comments_text_logged_in: Юзер не ссы, оставь первый комментарий! 
+  no_comments_text_logged_in: Юзер не ссы, оставь первый комментарий!
+  edit: Изменить
+  show_all_user_comments: Посмотреть все комментарии пользователя
+  comment_updated: Комментарий успешно обновлен
 
   direct_registration: На сайте
   facebook: Facebook
@@ -76,14 +79,15 @@ ru:
   my:
     you_have_no_comments: "Не ссы! Напиши хоть один... пожалуйста :)"
     overview: Обзор
+    my_page: Моя страница
     account:
       overview: Обзор
       profile: Профайл
       nick: Ник
     statistics:
       name: Статистика
-      comments_count: "Количество ваших комментариев:"
-      your_rating: "Ваш wit-рейтинг:"
+      comments_count: "%{comments_count} ваших остроумных комментариев на сайте"
+      your_rating: "Вы %{rating_place}-й в рейтинге вит-людей"
 
   notice:
     thanks: Спасибо!
@@ -91,10 +95,13 @@ ru:
     future_image: Вы хитрец!
     thanks_for_comment: +1 к комментарию %{nick}
     dislike_comment: -1 к комментарию %{nick}
+    comment_deleted: Комментарий удален... эх
   alert:
     author_vote: Вы не можете голосовать за свой же комментарий
+    you_are_not_author: Вы не автор этого комментария
+    you_cant_edit_comment: Комментария уже нельзя редактировать
 
-  this_comment_is_liked_to_pople:
+  this_comment_is_liked_to_people:
     one: Нравится one
     few: Нравится <b>%{count}</b> людям
     other: Нравится <b>%{count}</b> людям
@@ -403,3 +410,9 @@ ru:
         subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
+
+  views:
+    pagination:
+      previous: "&laquo; Назад"
+      next: "Вперед &raquo;"
+      truncate: "..."

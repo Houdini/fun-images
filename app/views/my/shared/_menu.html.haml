@@ -11,3 +11,8 @@
     - else
       %a(href="/my/statistics")
         = t :'my.statistics.name'
+  %li.splitter
+  %li
+    %a{:href => "/#{current_user.nick}"}(target="_blank")= t :'my.my_page'
+    %a{:href => "/#{current_user.nick}"}
+      %img(src="/images/open_in_new_window.png" style="position: absolute")

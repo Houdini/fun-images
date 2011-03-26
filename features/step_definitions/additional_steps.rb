@@ -36,7 +36,7 @@ end
 
 
 Given /^an image$/ do
-  image = Image.new :title => 'Image title', :image => File.open("#{Rails.root.to_s}/public/images/logo.png"), :shown_date => Date.today
+  image = Image.new :title => 'Image title', :image => File.open("#{Rails.root.to_s}/public/images/logo.png"), :shown_date => Date.today.to_i
   image.save
 end
 

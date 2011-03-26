@@ -1,11 +1,13 @@
 %ul#last_images
-  - index_to_show = -1
-  - @images.each_with_index do |image, index|
+  - @images.each do |image|
     - active = image.shown_date == @primary_image.shown_date
     %li{:class => active ? 'active' : ''}
       .image-container
         - if active
           = image_tag image.image.thumb.url
+        - elsif defined? @user
+          %a{:href => "/#{@user.nick}/#{image.shown_date.to_string_date}"}
+            = image_tag image.image.thumb.url
         - else
           %a{:href => "/#{image.shown_date.to_string_date}"}
             = image_tag image.image.thumb.url

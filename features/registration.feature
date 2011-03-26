@@ -40,3 +40,21 @@ Feature: Manage registrations via different services
     And I press "account_submit"
     And I go to the main page
     Then I should see "houdini"
+
+  Scenario: Duplicate registration
+    Given I go to the sign up page
+    And I fill in the following:
+      | user_email | user@gmail.com |
+      | user_password | 123456 |
+      | user_password_confirmation | 123456 |
+    And I press "user_submit"
+    And I go to the home page
+    And I follow i18n "log_out"
+
+    And I go to the sign up page
+    And I fill in the following:
+      | user_email | user@gmail.com |
+      | user_password | 123456 |
+      | user_password_confirmation | 123456 |
+    And I press "user_submit"
+    Then I should not see i18n "devise.registrations.signed_up"

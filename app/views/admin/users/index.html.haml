@@ -1,15 +1,26 @@
+= paginate @users
+
+%br
+
+Всего:
+= @total_users
+
 %table
   %tr
     %th(width="32px")
     %th
       nick
     %th e-mail
+    %th
   - @users.each do |user|
     %tr
       %td
         - if user.oauth
-          - user.oauth.each do |oauth|
-            %div{:class => "logo #{oauth.split.first}"}
+          = oauth_links user.oauth if user.oauth.size > 0
       %td
         = user.nick
       %td= user.email
+      %td
+        = link_to 'Показать', admin_user_path(user.id)
+        |
+        = link_to 'Изменить', edit_admin_user_path(user.id)

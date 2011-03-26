@@ -33,24 +33,14 @@
             - if current_user.nick_changed?
               ?-?-?-?
             - else
-              %a(href="/my/account")
+              %a(href="/my/statistics")
                 = current_user.nick
               -#%small ▼
         - if current_user.rating and current_user.rating > 0
           .wit-power
             %abbr{:title => t(:wit_power_explanation)}= "+" << current_user.rating.to_s
-        %span.semi-column :
+        %span.semi-column
         .user-menu
-          - if controller.env['PATH_INFO'] == my_comments_path
-            %span= t :my_comments
-          - else
-            = link_to t(:my_comments), my_comments_path
-
-          - if controller.env['PATH_INFO'] == comments_i_like_path
-            %span= t :comments_i_like
-          - else
-            = link_to t(:comments_i_like), comments_i_like_path
-
         .control-menu
           = link_to t(:log_out), destroy_user_session_path, :class => :log_out, :id => :log_out
       - else

@@ -4,13 +4,13 @@
   .menu
     = render 'my/shared/menu'
   .content
-    .nick= current_user.nick
+    %h2
+      .nick= current_user.nick
     %ul.statistics
+      - if current_user.rating_place
+        %li
+          %span
+            = t(:'my.statistics.your_rating', rating_place: current_user.rating_place).html_safe
       %li
         %span
-          = t(:'my.statistics.your_rating')
-        Скоро добавится
-      %li
-        %span
-          = t :'my.statistics.comments_count'
-        = current_user.comments.count
+          = t :'my.statistics.comments_count', comments_count: current_user.comments.count

@@ -12,4 +12,27 @@ namespace :migrate do
       p image.shown_date
     end
   end
+
+  desc "recreate organize_commented_images. 25 apr 2011"
+  task organize_commented_images: :environment do
+    User.all.each do |user|
+      p "user: #{user.nick} - #{user.id}"
+      user.commented_images ||= []
+      user.comments.each do |comment|
+        user.commented_images << comment.image.shown_date
+      end
+      user.save
+    end
+  end
+
+  desc "ensure nick if email is present and nick is null. 26 apr 2011"
+  task ensure_nick: :environment do
+    User.all.each do |user|
+      unless user.nick
+        if user.email
+          user.update_attribute :nick, email.split('@').first
+        end
+      end
+    end
+  end
 end

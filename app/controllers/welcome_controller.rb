@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
     @primary_image = Image.desc(:shown_date).first unless @primary_image
     if @primary_image
       @comment = @primary_image.comments.new
+      @comments = @primary_image.comments
       @images = Image.where(shown_date: {:'$gt' => (@primary_image.shown_date.to_date - @@image_limit), :'$lte' => date_today}).asc(:shown_date)
     else
       render 'no_images'
@@ -33,16 +34,18 @@ class WelcomeController < ApplicationController
     redirect_to root_url and return if @images.size <= 1
 
     @comment = @primary_image.comments.new
+    @comments = @primary_image.comments
 
     render :action => :index
   end
 
   private
-  def if_smth_to_do
-    if signed_in? :user and cookies.has_key? 'do'
-      session[:return_to] = request.request_uri
-      redirect_to cookies.delete(:do)
+
+    def if_smth_to_do
+      if signed_in? :user and cookies.has_key? 'do'
+        session[:return_to] = request.request_uri
+        redirect_to cookies.delete(:do)
+      end
     end
-  end
 
 end

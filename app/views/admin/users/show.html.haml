@@ -1,0 +1,15 @@
+= link_to 'Изменить', edit_admin_user_path(@user._id)
+%table
+  %tr
+    %td
+      Ник:
+    %td= @user.nick
+  %tr
+    %td Email:
+    %td= @user.email
+  %tr
+    %td Oauth
+    %td= oauth_links @user.oauth if @user.oauth.size > 0
+  %tr
+    %td Oauth data
+    %td= @user.oauth_data

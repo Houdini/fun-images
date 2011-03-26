@@ -7,6 +7,7 @@
 @import "blueprint"
 @import "blueprint/typography"
 @import "fancy-buttons"
+@import "compass/css3/border-radius"
 
 $red: #e13535
 
@@ -56,6 +57,9 @@ $dark-gray: #bbb
     margin-left: 5px
     abbr
       color: green
+      border-bottom: none
+    abbr:hover
+      border-bottom: 1px dotted green
   .semi-column
     float: left
     margin-right: 5px
@@ -77,32 +81,31 @@ $dark-gray: #bbb
       color: $loud-color
 
 .content
-  width: 1000px
-  margin: 0 auto
   #main_image
     width: 540px
     float: left
 
   #comments
     margin-left: 550px
-    width: 450px
+    margin-right: 20px
     h1
       font-size: 1.5em
       color: green
     .menu
-      border-bottom: 1px solid $dark-gray
       h2
         font-size: 18px
         padding-bottom: 10px
         margin-bottom: 0
         font-weight: bold
-    form.new_comment
+    form.new_comment, form.edit_comment
       padding: 5px
-      border-bottom: 1px solid $light-gray
       .comment-input-title
         color: gray
+        float: left
+        width: 100%
 
       textarea
+        clear: both
         height: 50px
         outlike-color: black
       textarea:focus
@@ -114,14 +117,24 @@ $dark-gray: #bbb
 
     .comments
       .comment
-        padding: 10px
+        padding-left: 10px
         padding-bottom: 25px
-        border-bottom: 1px dotted $light-gray
+        +border-radius(5px)
+        border-color: black
+        border-width: 1px !important
+        border: 1px solid #efefef
+        margin-bottom: 6px
         .body
           p
             margin-bottom: 8px
+            display: inline
+          .edit
+            white-space: nowrap
+            margin-left: 10px
+            font-size: 12px
         .comment-info
           margin-bottom: 4px
+          margin-top: 10px
           .nick, .time-passed, .like-to
             display: inline
             margin-right: 4%
@@ -142,14 +155,39 @@ $dark-gray: #bbb
             b
               color: #323232
               font-size: 12px
-        .body
+        .additional
+          float: right
+          cursor: default
+          padding: 4px
+          @include fancy-button-structure(10px, 3px, 1px)
+          @include fancy-button-colors(white, #efefef, white)
+          position: relative
+          span
+            font-size: 110%
+          ul
+            position: absolute
+            left: -300px
+            width: 300px
+            background-color: #e6e6e6
+            border: 1px solid darken(#e6e6e6, 5)
+            display: none
+            padding: 0px
+            +no-bullets
+            li
+              padding: 4px 10px 4px 4px
+              a
+                color: black
+                text-decoration: none
+              a:hover
+                text-decoration: underline
+            li:hover
+              background-color: lighent(#e6e6e6, 5)
         .i-like
           margin-top: 4px
           font-size: 12px
           display: none
           position: absolute
       .comment:hover
-        background-color: $light-gray
         .menu
           display: inline
         .i-like

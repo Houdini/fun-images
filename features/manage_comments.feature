@@ -126,3 +126,21 @@ Feature: Manage comments
     And I follow i18n "i_like"
     And I go to the home page
     Then I should not see i18n "notice.thanks_for_comment" "nick user"
+
+# TODO: Webrat error, posted on webrat google group
+#  Scenario: User can delete his comment and another user can not
+#    Given I am logged in
+#    Given an image
+#
+#    And go to the home page
+#    And I fill in the following:
+#      | comment_body | Comment body4 |
+#    And I press "comment_submit"
+#    And go to the home page
+#    And I follow i18n "log_out"
+#
+#    And I am logged in "user2"
+#    Then what
+#    And I follow i18n "destroy_comment"
+#    Then what
+#    Then I should see i18n "alert.you_are_not_author"

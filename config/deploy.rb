@@ -67,3 +67,9 @@ end
 #task :migrating, :roles => :app do
 #  run "cd #{current_path} && rake migrate:shown_date_date_to_integer RAILS_ENV=production"
 #end
+
+# migrate 2 migrations. 26 mar
+task :migrating, roles: :app do
+  run "cd #{current_path} && rake migrate:organize_commented_images RAILS_ENV=production"
+  run "cd #{current_path} && rake migrate:ensure_nick RAILS_ENV=production"
+end

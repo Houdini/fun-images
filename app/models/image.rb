@@ -8,11 +8,13 @@ class Image
   field :description, :type => String
   mount_uploader :image, ImageUploader
   field :shown_date, :type => Integer
+  index :shown_date, :unique => true
   field :alt
 
   attr_accessible :title, :description, :image, :shown_date
 
   validates_presence_of :image
+  validates_uniqueness_of :shown_date
 
   referenced_in :user
   references_many :comments

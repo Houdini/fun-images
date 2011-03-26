@@ -12,7 +12,7 @@
       - else
         = t :comments
   - if signed_in? :user
-    = form_for [@primary_image, @comment], remote: true do |f|
+    = form_for [@primary_image, @comment], remote: @comment.new_record? do |f|
       - if @comment.errors.any?
         #error_explanation
           %h2
@@ -28,17 +28,25 @@
       :javascript
         document.getElementById('comment_body').style.height = '15px';
       .submit-container
+
         = f.submit t(:submit_comment), :name => nil
         #characters_left{:class => "max-#{Comment.max_characters}"}= t :max_characters, :max => Comment.max_characters
         :javascript
           document.getElementById('characters_left').innerHTML = '';
           document.getElementById('comment_submit').style.display = 'none';
   .comments
-    :ruby
-      comments = @primary_image.comments.reverse
-    - comments.each do |comment|
+    - @comments.each do |comment|
       - next if comment.new_record?
+      - is_editable = (signed_in?(:user) and (current_user.id == comment.user_id) and comment.editable?)
       .comment
+        .additional
+          %span ▼
+          %ul
+            %li
+              = link_to t(:show_all_user_comments) + " #{comment.user.nick}", "/#{comment.user.nick}"
+            - if is_editable
+              %li
+                = link_to t(:destroy_comment), image_comment_path(@primary_image.shown_date.to_s, comment.id), method: :delete, remote: true, class: :delete_comment
         .comment-info
           .nick
             %a(href="#")= comment.user.nick
@@ -50,10 +58,12 @@
             - if comment.rating == 1
               = t(:comment_like_to_one_person, :person => (link_to comment.find_like_users.first.nick, '#')).html_safe
             - elsif comment.rating > 1
-              = t(:this_comment_is_liked_to_pople, :count => comment.rating).html_safe
-
+              = t(:this_comment_is_liked_to_people, :count => comment.rating).html_safe
         .body
           = simple_format comment.body
+          - if is_editable
+            %a{:href => "/images/#{@primary_image.shown_date}/comments/#{comment._id}/edit"}(class="edit")
+              = t :edit
         .i-like
           - if !signed_in? :user or (signed_in? :user and current_user.id != comment.user_id and current_user.find_in_like_comments(comment.id).size == 0)
             = link_to t(:i_like), image_comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
@@ -62,3 +72,4 @@
 
           - if Rails.env.test?
             = link_to t(:i_like), image_comment_i_like_path(@primary_image.shown_date.to_s, comment.id), :remote => true
+            = link_to t(:destroy_comment), image_comment_path(@primary_image.shown_date.to_s, comment.id, :method => :delete), :method => :delete

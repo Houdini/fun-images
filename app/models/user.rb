@@ -1,14 +1,16 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :omniauthable
+
+  paginates_per 25
 
 
   with_options :if => :direct_registration? do |v|
     v.validates_presence_of   :email
     v.validates_format_of     :email, :with  => /\A([\p{Word}\.%\+\-]+)@([\p{Word}\-]+\.)+([\p{Word}]{2,})\z/i, :allow_blank => true
+    v.validates_uniqueness_of :email
 
     v.validates_presence_of     :password
     v.validates_confirmation_of :password
@@ -16,27 +18,36 @@ class User
   end
 
   field :role, :type => Integer, :default => 10
+
   field :nick
+  index :nick, :unique => true
+
   field :avatar
   field :oauth, :type => Array, :default => []
   field :oauth_data, :type => Hash, :default => {}
   field :like_comments, :type => Array, :default => []
+
   field :rating, :type => Integer, :default => 0
+  field :rating_place, :type => Integer
+
+  field :commented_images, :type => Array, :default => []
 
   references_many :images
   references_many :comments
   embeds_many :user_like_comments
 
-  def before_create
-    self.nick = email.split('@').first unless nick
+  before_save :organize_commented_images
+  before_create :nick_from_email
+
+  def organize_commented_images
+    if commented_images_changed?
+      self.commented_images.sort!
+      self.commented_images.uniq!
+    end
   end
 
-  def nick
-    if super
-      super
-    else
-      email.split('@').first
-    end
+  def nick_from_email
+    self.nick = email.split('@').first unless nick
   end
 
   def validate_nick
@@ -105,10 +116,18 @@ class User
       end
       user
     end
+
+    def recalculate_rating_place
+      User.desc(:rating).all.each_with_index do |user, index|
+        user.update_attribute :rating_place, index + 1
+      end
+    end
+
   end
 
   protected
-  def direct_registration?
-    new_record? and oauth.size == 0
-  end
+
+    def direct_registration?
+      new_record? and oauth.size == 0
+    end
 end

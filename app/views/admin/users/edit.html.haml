@@ -1,0 +1,10 @@
+= form_for [:admin, @user] do |f|
+  %p
+    = f.label :nick
+    = f.text_field :nick
+  %p
+    = f.label :email
+    = f.text_field :email
+
+  %p
+    = f.submit

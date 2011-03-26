@@ -38,11 +38,6 @@ $(function(){
         $(this).siblings().removeClass('selected').end().next('dd').andSelf().addClass('selected');
     });
 
-//    $('ul.auth-way li .title').live('click', function(event){
-//        event.preventDefault();
-//        $(this).parents('li').addClass('active').siblings().removeClass('active');
-//    });
-
     $('.i-like a').bind('ajax:success', function(data, status, xhr){
         var $this = $(this),
             comment = $this.parent();
@@ -107,6 +102,31 @@ $(function(){
     $('#comment_body').click(function(){
         $(this).css('height', '50px');
         $('#comment_submit').show();
+    });
+
+    $('.additional').click(function(event){
+        if (!$(event.target).is('a'))
+            event.stopPropagation();
+        var $this = $(this),
+            menu = $this.find('ul');
+        if (menu.is(':hidden'))
+        {
+            menu.show();
+            $('body').click(function(){
+                menu.hide();
+                $(this).unbind('click');
+            });
+        } else {
+            menu.hide();
+        }
+    });
+
+    $('.delete_comment').bind('ajax:success', function(data, responce, xhr){
+        if (responce.status === 'ok')
+        {
+            var parent = $(this).parents('.comment');
+            parent.html('<h1>' + tg[responce.message] + '</h1>');
+        }
     });
 
 });
