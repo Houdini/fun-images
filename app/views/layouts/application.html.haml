@@ -15,6 +15,7 @@
     %link(rel="shortcut icon" href="/favicon.png")
     %title= page_title yield :page_title
     = csrf_meta_tag
+    = javascript_include_tag 'http://userapi.com/js/api/openapi.js?22'
   %body
     -if flash.has_key? :alert or flash.has_key? :notice
       #notifications{:class => flash.has_key?(:alert) ? 'alert' : 'notice'}
@@ -49,6 +50,7 @@
     .logo
       %h1
         %a(href="/") 7wit
+      = render 'shared/likes'
     = yield
     = javascript_include_tag 'js_translations'
     - if Rails.env.production?
