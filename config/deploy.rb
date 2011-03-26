@@ -67,6 +67,10 @@ task :create_indexes, roles: :app do
   run "cd #{current_path} && rake db:mongoid:create_indexes RAILS_ENV=production"
 end
 
+desc "update user rating"
+task :update_user_rating, roles: :app do
+  run "cd #{current_path} && rake regular:recalculate_user_rating RAILS_ENV=production"
+end
 
 # migrate on 23 apr 2011
 #

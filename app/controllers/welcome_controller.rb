@@ -34,7 +34,7 @@ class WelcomeController < ApplicationController
     redirect_to root_url and return if @images.size <= 1
 
     @comment = @primary_image.comments.new
-    @comments = @primary_image.comments
+    @comments = @primary_image.comments.desc(:created_at)
 
     render :action => :index
   end
