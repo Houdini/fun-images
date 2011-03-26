@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     @primary_image = Image.desc(:shown_date).first unless @primary_image
     if @primary_image
       @comment = @primary_image.comments.new
-      @comments = @primary_image.comments
+      @comments = @primary_image.comments.desc(:created_at)
       @images = Image.where(shown_date: {:'$gt' => (@primary_image.shown_date.to_date - @@image_limit), :'$lte' => date_today}).asc(:shown_date)
     else
       render 'no_images'
