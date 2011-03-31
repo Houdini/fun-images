@@ -10,6 +10,7 @@ public/;-)
 test/
 Gemfile.lock
 config/application.yml
+config/newrelic.yml
 
 # Temporary files of every sort
 .sass-cache
