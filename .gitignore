@@ -9,6 +9,7 @@ public/;-)
 .rvmrc
 test/
 Gemfile.lock
+config/application.yml
 
 # Temporary files of every sort
 .sass-cache
