@@ -129,6 +129,25 @@ $(function(){
         }
     });
 
+    $('.nick a.tipsy').hover(function(){
+        $.get('/ajax/hover_card/Houdini.json').success(function(){
+
+        });
+    });
+
+    $('.nick a.tipsy').tipsy(
+        {
+            delayIn: 200,
+            delayOut: 5000,
+            gravity: 's',
+            fade: true,
+            title: function(){
+                console.log($(this).$tip);
+                return 'hello'
+            }
+        }
+    );
+
 });
 
 $(window).scroll(function(){

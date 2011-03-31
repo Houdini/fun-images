@@ -49,7 +49,7 @@
                 = link_to t(:destroy_comment), image_comment_path(@primary_image.shown_date.to_s, comment.id), method: :delete, remote: true, class: :delete_comment
         .comment-info
           .nick
-            %a(href="#")= comment.user.nick
+            %a.tipsy(href="#")= comment.user.nick
 
           .time-passed
             %abbr{:title => comment.created_at}= time_ago_from comment.created_at

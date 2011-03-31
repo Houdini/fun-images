@@ -1,4 +1,9 @@
 FunImages::Application.routes.draw do
+
+  namespace :ajax do
+    resources :hover_card, :only => :show
+  end
+
   namespace :admin do
     root :to => 'welcome#index'
     resources :images do 

@@ -56,7 +56,7 @@
     - if Rails.env.production?
       = javascript_include_tag 'application.min'
     - else
-      = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'gritter/jquery.gritter.min', 'application'
+      = javascript_include_tag 'mustache', 'jquery', 'rails', 'jquery.cookie', 'gritter/jquery.gritter.min', 'jquery.tipsy', 'application'
     = js add_gritter flash[:notice], :image => :notice, :sticky => false, :title => t(:"gflash.titles.notice")
     = js add_gritter flash[:alert], :image => :error, :sticky => false, :title => t(:"gflash.titles.error")
     = render 'shared/metrics' if Rails.env.production?
